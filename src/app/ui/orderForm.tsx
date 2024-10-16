@@ -1,10 +1,17 @@
 "use client";
 import React from "react";
 import { PlusIcon, MinusIcon } from "@heroicons/react/24/outline";
-import Link from "next/link";
+import { createOrder } from "@/actions/actions";
+import { useAppSelector } from "../store/hooks";
 
-export default function OrderForm({ version = 1 }: { version?: number }) {
+export default function OrderForm({
+  version = 1,
+  product,
+}: {
+  version?: number;
+}) {
   const [countt, setCountt] = React.useState(0);
+  const cart = useAppSelector((state) => state.cart);
 
   const addCount = () => {
     setCountt((prev) => prev + 1);
@@ -15,17 +22,20 @@ export default function OrderForm({ version = 1 }: { version?: number }) {
       setCountt((prev) => prev - 1);
     }
   };
+  async function handleSubmit(formData: FormData) {
+    await createOrder(formData, cart.total, cart.items);
+  }
   return (
     <form
       className="flex flex-col gap-4 mt-4 md:grid md:grid-cols-[repeat(2,1fr)]"
-      action=""
+      action={handleSubmit}
     >
-      <input placeholder="Your Firstname" type="text" className="name" />
-      <input placeholder="Your Lastname" type="text" className="name" />
-      <input placeholder="Phone number" type="number" className="phone" />
-      <input placeholder="Region" type="text" className="region" />
-      <input placeholder="City" type="text" className="address" />
-      <input placeholder="Your Address" type="text" className="address" />
+      <input placeholder="Your Full Name" type="text" name="name" />
+      <input placeholder="Your Email" type="text" name="email" />
+      <input placeholder="Phone number" type="number" name="phone" />
+      <input placeholder="Region" type="text" name="region" />
+
+      <input placeholder="Your Address" type="text" name="address" />
       {version === 2 && (
         <div className="col-span-full lg:mt-11 mt-10">
           <div className="flex flex-row justify-between">
@@ -52,11 +62,13 @@ export default function OrderForm({ version = 1 }: { version?: number }) {
           <hr className=" bg-gray-200 w-full my-2" />
         </div>
       )}
-      <Link className="md:col-span-full" href={""}>
-        <button className=" focus:outline-none focus:ring-2 hover:bg-black focus:ring-offset-2 focus:ring-gray-800 font-medium text-base leading-4 text-white bg-gray-800 w-full py-5 lg:mt-12 mt-6">
-          Purchase
-        </button>
-      </Link>
+
+      <button
+        type="submit"
+        className="md:col-span-full focus:outline-none focus:ring-2 hover:bg-black focus:ring-offset-2 focus:ring-gray-800 font-medium text-base leading-4 text-white bg-gray-800 w-full py-5 lg:mt-12 mt-6"
+      >
+        Purchase
+      </button>
     </form>
   );
 }

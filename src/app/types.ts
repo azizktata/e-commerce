@@ -5,6 +5,8 @@ export interface Item {
     quantity?: number;
     image?: string;
     category?: string;
+    createdAt?: Date;
+    updatedAt?: Date;
   }
 
   export const productss: Item[] = [

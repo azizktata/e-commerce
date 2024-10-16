@@ -9,9 +9,11 @@ import {
 } from "@heroicons/react/24/outline";
 import Slider from "./ui/slider";
 import Card from "./ui/card";
-import { productss } from "./types";
+import prisma from "@/lib/db";
+// import { productss } from "./types";
 
-export default function Home() {
+export default async function Home() {
+  const products = await prisma.product.findMany();
   return (
     <>
       <Header />
@@ -116,7 +118,7 @@ export default function Home() {
             id="slider"
             sliderClass="flex gap-1 overflow-x-auto custom-scrollbar  "
           >
-            {productss.map((product) => (
+            {products.map((product) => (
               <Card key={product.id} product={product} />
             ))}
           </Slider>
@@ -127,7 +129,7 @@ export default function Home() {
             id="slider2"
             sliderClass="flex gap-1 overflow-x-auto custom-scrollbar  "
           >
-            {productss.map((product) => (
+            {products.map((product) => (
               <Card key={product.id} product={product} />
             ))}
           </Slider>

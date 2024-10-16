@@ -63,7 +63,7 @@ export default function Select({ options }: { options: string[] }) {
   }, [sortFilter, categoryFilter]);
 
   return (
-    <div className="flex ">
+    <>
       <div className="flex gap-4">
         <select
           value={sortFilter || 0}
@@ -90,13 +90,6 @@ export default function Select({ options }: { options: string[] }) {
           ))}
         </select>
       </div>
-      <p className="ml-auto">
-        <strong>
-          {" "}
-          {/* {length > 1 ? `${length} Products` : `${length} Product`}{" "} */}
-          0 product
-        </strong>
-      </p>
-    </div>
+    </>
   );
 }

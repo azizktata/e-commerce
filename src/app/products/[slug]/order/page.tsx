@@ -1,18 +1,22 @@
-"use client";
-
-import { productss } from "@/app/types";
 import Header from "@/app/ui/header";
 import OrderForm from "@/app/ui/orderForm";
+import prisma from "@/lib/db";
 import Image from "next/image";
 
 import Link from "next/link";
 import { notFound } from "next/navigation";
 import React from "react";
 
-export default function ProductOrder({ params }: { params: { id: string } }) {
-  const product = productss.find(
-    (product) => product.id === parseInt(params.id)
-  );
+export default async function ProductOrder({
+  params,
+}: {
+  params: { slug: string };
+}) {
+  const product = await prisma.product.findUnique({
+    where: {
+      slug: params.slug,
+    },
+  });
   if (!product) {
     notFound();
   }
@@ -28,8 +32,8 @@ export default function ProductOrder({ params }: { params: { id: string } }) {
           </div>
 
           <nav className="flex gap-8 text-xl mb-8">
-            <Link href="/products/1">Details</Link>
-            <Link href="/products/1/order">Order</Link>
+            <Link href={`/products/${params.slug}`}>Details</Link>
+            <Link href={`/products/${params.slug}/order`}>Order</Link>
           </nav>
         </div>
         <div className="flex justify-center sm:items-start  lg:flex-row flex-col gap-8">
@@ -43,7 +47,7 @@ export default function ProductOrder({ params }: { params: { id: string } }) {
             <div className=" w-full lg:w-8/12 bg-gray-100 flex justify-center items-center">
               <Image
                 className="relative w-40"
-                src="/test.png"
+                src={product.image}
                 alt=""
                 width={160}
                 height={160}
@@ -53,7 +57,7 @@ export default function ProductOrder({ params }: { params: { id: string } }) {
               <div className="bg-gray-100 flex justify-center items-center py-4">
                 <Image
                   className="relative w-40"
-                  src="/test.png"
+                  src={product.image}
                   alt=""
                   width={160}
                   height={160}
@@ -62,7 +66,7 @@ export default function ProductOrder({ params }: { params: { id: string } }) {
               <div className="bg-gray-100 flex justify-center items-center py-4">
                 <Image
                   className="relative w-40"
-                  src="/test.png"
+                  src={product.image}
                   alt=""
                   width={160}
                   height={160}
@@ -71,7 +75,7 @@ export default function ProductOrder({ params }: { params: { id: string } }) {
               <div className="bg-gray-100 flex justify-center items-center py-4">
                 <Image
                   className="relative w-40"
-                  src="/test.png"
+                  src={product.image}
                   alt=""
                   width={160}
                   height={160}

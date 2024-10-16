@@ -4,10 +4,10 @@ import Image from "next/image";
 import React from "react";
 import { useAppDispatch } from "../store/hooks";
 import { addToCart } from "../store/slices/cartSlice";
-import { Item } from "../types";
+// import { Item } from "../types";
 import Link from "next/link";
 
-export default function Card({ product }: { product: Item }) {
+export default function Card({ product }) {
   const dispatch = useAppDispatch();
   return (
     <div className="min-w-[250px]  relative overflow-hidden bg-gray-300 rounded-lg max-w-base shadow-lg group">
@@ -35,7 +35,7 @@ export default function Card({ product }: { product: Item }) {
           fill="white"
         />
       </svg>
-      <Link href={`../products/${product.id}`}>
+      <Link href={`../products/${product.slug}`}>
         <div className="relative pt-10 px-10 flex items-center justify-center group-hover:scale-110 transition-transform">
           <div
             className="block absolute w-48 h-48 bottom-0 left-0 -mb-24 ml-3"
@@ -47,7 +47,7 @@ export default function Card({ product }: { product: Item }) {
           ></div>
           <Image
             className="relative w-40"
-            src="/test.png"
+            src={product.image || "/test.png"}
             alt=""
             width={160}
             height={160}

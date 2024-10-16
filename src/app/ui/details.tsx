@@ -2,10 +2,14 @@
 
 import React from "react";
 import { PlusIcon, MinusIcon } from "@heroicons/react/24/outline";
-import { Item } from "../types";
+// import { Item } from "../types";
 import Image from "next/image";
+import { useAppDispatch } from "../store/hooks";
+import { addToCart } from "../store/slices/cartSlice";
 
-export default function Details({ product }: { product: Item }) {
+export default function Details({ product }) {
+  const dispatch = useAppDispatch();
+
   const [count, setCount] = React.useState(0);
 
   const addCount = () => {
@@ -33,10 +37,11 @@ export default function Details({ product }: { product: Item }) {
         </div>
 
         <p className=" font-normal text-base leading-6 text-gray-600 mt-7">
-          It is a long established fact that a reader will be distracted by the
+          {/* It is a long established fact that a reader will be distracted by the
           readable content of a page when looking at its layout. The point of
           using. Lorem Ipsum is that it has a more-or-less normal distribution
-          of letters.
+          of letters. */}
+          {product.description}
         </p>
         <p className=" font-semibold lg:text-2xl text-xl lg:leading-6 leading-5 mt-6 ">
           $ {product.price}
@@ -67,7 +72,12 @@ export default function Details({ product }: { product: Item }) {
           <hr className=" bg-gray-200 w-full my-2" />
         </div>
 
-        <a href="#sidebar">
+        <a
+          onClick={() =>
+            dispatch(addToCart({ item: product, quantity: count }))
+          }
+          href="#sidebar"
+        >
           <button className="focus:outline-none focus:ring-2 hover:bg-black focus:ring-offset-2 focus:ring-gray-800 font-medium text-base leading-4 text-white bg-gray-800 w-full py-5 lg:mt-12 mt-6">
             Add to cart
           </button>
@@ -78,7 +88,7 @@ export default function Details({ product }: { product: Item }) {
         <div className=" w-full lg:w-8/12 bg-gray-100 flex justify-center items-center">
           <Image
             className="relative w-40"
-            src="/test.png"
+            src={product.image}
             alt=""
             width={160}
             height={160}
@@ -88,7 +98,7 @@ export default function Details({ product }: { product: Item }) {
           <div className="bg-gray-100 flex justify-center items-center py-4">
             <Image
               className="relative w-40"
-              src="/test.png"
+              src={product.image}
               alt=""
               width={160}
               height={160}
@@ -97,13 +107,23 @@ export default function Details({ product }: { product: Item }) {
           <div className="bg-gray-100 flex justify-center items-center py-4">
             <Image
               className="relative w-40"
-              src="/test.png"
+              src={product.image}
               alt=""
               width={160}
               height={160}
             />
           </div>
-          <div className="bg-gray-100 flex justify-center items-center py-4"></div>
+          <div className="bg-gray-100 flex justify-center items-center py-4">
+            <div className="bg-gray-100 flex justify-center items-center py-4">
+              <Image
+                className="relative w-40"
+                src={product.image}
+                alt=""
+                width={160}
+                height={160}
+              />
+            </div>
+          </div>
         </div>
       </div>
     </>
