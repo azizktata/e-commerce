@@ -3,6 +3,7 @@
 import React from "react";
 import { PlusIcon, MinusIcon } from "@heroicons/react/24/outline";
 import { Item } from "../types";
+import Image from "next/image";
 
 export default function Details({ product }: { product: Item }) {
   const [count, setCount] = React.useState(0);
@@ -75,30 +76,34 @@ export default function Details({ product }: { product: Item }) {
 
       <div className=" w-full sm:w-96 md:w-8/12  lg:w-6/12 flex lg:flex-row flex-col lg:gap-8 sm:gap-6 gap-4">
         <div className=" w-full lg:w-8/12 bg-gray-100 flex justify-center items-center">
-          <img
-            src="https://i.ibb.co/bRg2CJj/sam-moqadam-kvmds-Tr-GOBM-unsplash-removebg-preview-1.png"
-            alt="Wooden Chair Previw"
+          <Image
+            className="relative w-40"
+            src="/test.png"
+            alt=""
+            width={160}
+            height={160}
           />
         </div>
         <div className=" w-full lg:w-4/12 grid lg:grid-cols-1 sm:grid-cols-4 grid-cols-2 gap-6">
           <div className="bg-gray-100 flex justify-center items-center py-4">
-            <img
-              src="https://i.ibb.co/0jX1zmR/sam-moqadam-kvmds-Tr-GOBM-unsplash-removebg-preview-1-1.png"
-              alt="Wooden chair - preview 1"
+            <Image
+              className="relative w-40"
+              src="/test.png"
+              alt=""
+              width={160}
+              height={160}
             />
           </div>
           <div className="bg-gray-100 flex justify-center items-center py-4">
-            <img
-              src="https://i.ibb.co/7zv1N5Q/sam-moqadam-kvmds-Tr-GOBM-unsplash-removebg-preview-2.png"
-              alt="Wooden chair - preview 2"
+            <Image
+              className="relative w-40"
+              src="/test.png"
+              alt=""
+              width={160}
+              height={160}
             />
           </div>
-          <div className="bg-gray-100 flex justify-center items-center py-4">
-            <img
-              src="https://i.ibb.co/0jX1zmR/sam-moqadam-kvmds-Tr-GOBM-unsplash-removebg-preview-1-1.png"
-              alt="Wooden chair- preview 3"
-            />
-          </div>
+          <div className="bg-gray-100 flex justify-center items-center py-4"></div>
         </div>
       </div>
     </>

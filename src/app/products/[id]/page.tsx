@@ -2,8 +2,9 @@ import Header from "@/app/ui/header";
 import React from "react";
 import Link from "next/link";
 import Details from "@/app/ui/details";
-import { productss } from "@/app/page";
+
 import { notFound } from "next/navigation";
+import { productss } from "@/app/types";
 
 export default function ProductDetails({ params }: { params: { id: string } }) {
   const product = productss.find(

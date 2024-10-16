@@ -2,7 +2,7 @@ import Link from "next/link";
 import Header from "../ui/header";
 import Card from "../ui/card";
 import Select from "../ui/select";
-import { productss } from "../page";
+import { productss } from "../types";
 
 export default async function Products() {
   const categories: string[] = ["tables", "chairs", "accessories"];
