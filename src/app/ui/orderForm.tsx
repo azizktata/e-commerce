@@ -3,10 +3,25 @@ import React from "react";
 import { PlusIcon, MinusIcon } from "@heroicons/react/24/outline";
 import { createOrder } from "@/actions/actions";
 import { useAppSelector } from "../store/hooks";
+import { useKindeBrowserClient } from "@kinde-oss/kinde-auth-nextjs";
+import toast from "react-hot-toast";
+import { useRouter } from "next/navigation";
 
-export default function OrderForm({ version = 1 }: { version?: number }) {
+export default function OrderForm({
+  version = 1,
+  userInfo,
+}: {
+  version?: number;
+  userInfo?: {
+    phone: string;
+    address: string;
+  };
+}) {
   const [countt, setCountt] = React.useState(0);
   const cart = useAppSelector((state) => state.cart);
+  const { user } = useKindeBrowserClient();
+
+  const router = useRouter();
 
   const addCount = () => {
     setCountt((prev) => prev + 1);
@@ -18,19 +33,68 @@ export default function OrderForm({ version = 1 }: { version?: number }) {
     }
   };
   async function handleSubmit(formData: FormData) {
-    await createOrder(formData, cart.total, cart.items);
+    const res = await createOrder(formData, cart.total, cart.items);
+    if (res) {
+      if (res.success) {
+        toast.success(res.message);
+        router.push("/");
+      } else {
+        toast.error(res.message);
+      }
+    }
   }
+
   return (
     <form
       className="flex flex-col gap-4 mt-4 md:grid md:grid-cols-[repeat(2,1fr)]"
       action={handleSubmit}
     >
-      <input placeholder="Your Full Name" type="text" name="name" />
-      <input placeholder="Your Email" type="text" name="email" />
-      <input placeholder="Phone number" type="number" name="phone" />
-      <input placeholder="Region" type="text" name="region" />
+      {user ? (
+        <>
+          <input
+            value={user?.given_name || ""}
+            placeholder="Your Full Name"
+            type="text"
+            name="name"
+          />
 
-      <input placeholder="Your Address" type="text" name="address" />
+          <input
+            value={user?.email || ""}
+            placeholder="Your Email"
+            type="text"
+            name="email"
+          />
+        </>
+      ) : (
+        <>
+          <input placeholder="Your Full Name" type="text" name="name" />
+
+          <input placeholder="Your Email" type="text" name="email" />
+        </>
+      )}
+      {userInfo ? (
+        <>
+          <input
+            value={userInfo.phone}
+            placeholder="Phone number"
+            type="number"
+            name="phone"
+          />
+
+          <input
+            value={userInfo.address}
+            placeholder="Your Address"
+            type="text"
+            name="address"
+          />
+        </>
+      ) : (
+        <>
+          <input placeholder="Phone number" type="number" name="phone" />
+
+          <input placeholder="Your Address" type="text" name="address" />
+        </>
+      )}
       {version === 2 && (
         <div className="col-span-full lg:mt-11 mt-10">
           <div className="flex flex-row justify-between">
@@ -41,14 +105,7 @@ export default function OrderForm({ version = 1 }: { version?: number }) {
               <button onClick={() => minusCount}>
                 <MinusIcon className="h-4 w-4 text-black-500" />
               </button>
-              <input
-                id="counter"
-                aria-label="input"
-                className=" h-full text-center w-14 pb-1"
-                type="text"
-                value={countt}
-                onChange={(e) => e.target.value}
-              />
+              <span>{countt}</span>
               <button onClick={() => addCount}>
                 <PlusIcon className="h-4 w-4 text-black-500" />
               </button>

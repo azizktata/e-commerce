@@ -2,9 +2,14 @@
 import Link from "next/link";
 import React from "react";
 import { useAppSelector } from "../store/hooks";
+import { usePathname } from "next/navigation";
+import { useKindeBrowserClient } from "@kinde-oss/kinde-auth-nextjs";
+import Image from "next/image";
 
 export default function Header() {
   const cart = useAppSelector((state) => state.cart);
+  const pathname = usePathname();
+  const { user, isAuthenticated } = useKindeBrowserClient();
   return (
     <header>
       <div className="w-[90%] mx-auto py-4 flex flex-col  md:flex-row md:justify-between md:items-center">
@@ -19,15 +24,51 @@ export default function Header() {
         <nav>
           <ul className="flex gap-4 justify-center py-3 uppercase items-center">
             <li>
-              <Link href="/">Home </Link>
+              <Link
+                className={`${
+                  pathname === "/" ? "border-b border-solid border-black" : ""
+                }`}
+                href="/"
+              >
+                Home{" "}
+              </Link>
             </li>
             <li>
-              <Link href="./products">Shop</Link>
+              <Link
+                className={`${
+                  pathname === "/products"
+                    ? "border-b border-solid border-black"
+                    : ""
+                }`}
+                href="./products"
+              >
+                Shop
+              </Link>
             </li>
-            <li>
-              <Link href="../login">Login</Link>
-            </li>
-            <li className="relative cursor-pointer">
+            {isAuthenticated ? (
+              <>
+                <li>
+                  <Link href="/api/auth/logout">Logout</Link>
+                </li>
+                {user?.picture && (
+                  <li>
+                    <Image
+                      src={user.picture}
+                      width={50}
+                      height={50}
+                      alt="user"
+                      className="h-6 w-6 rounded-full"
+                    />
+                  </li>
+                )}
+                <li></li>
+              </>
+            ) : (
+              <li>
+                <Link href="/api/auth/login">Login</Link>
+              </li>
+            )}
+            <li className="relative cursor-pointer ml-8">
               <a href="#sidebar">
                 <svg
                   xmlns="http://www.w3.org/2000/svg"

@@ -29,23 +29,23 @@ const initialProducts: Prisma.ProductCreateInput[] = [
     }
 ]
 
-const intialUsers: Prisma.UserCreateInput[] = [
-    {
-        email: 'aziz@gmail.com',
-        username: 'Aziz',
-        password: 'password',
-        phone: '123456',
-        address: 'Tunis, Ben arous'
+// const intialUsers: Prisma.UserCreateInput[] = [
+//     {
+//         email: 'aziz@gmail.com',
+//         username: 'Aziz',
+//         password: 'password',
+//         phone: '123456',
+//         address: 'Tunis, Ben arous'
 
-    },
-    {
-        email: 'aymen@gmail.com',
-        username: 'aymen',
-        password: 'password',
-        phone: '845214',
-        address: 'Tunis, Ezzahra'
-    }
-]
+//     },
+//     {
+//         email: 'aymen@gmail.com',
+//         username: 'aymen',
+//         password: 'password',
+//         phone: '845214',
+//         address: 'Tunis, Ezzahra'
+//     }
+// ]
 
 async function main() {
     for (const product of initialProducts) {
@@ -53,11 +53,11 @@ async function main() {
             data: product
         })
     }
-    for (const user of intialUsers) {
-        await prisma.user.create({
-            data: user
-        })
-    }
+    // for (const user of intialUsers) {
+    //     await prisma.user.create({
+    //         data: user
+    //     })
+    // }
 
 }
 main()

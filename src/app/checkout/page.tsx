@@ -1,12 +1,21 @@
-"use client";
-
 import React from "react";
 import Header from "../ui/header";
-import { useAppSelector } from "../store/hooks";
 import OrderForm from "../ui/orderForm";
+import OrderSummary from "../ui/orderSummary";
+import prisma from "@/lib/db";
+import { getKindeServerSession } from "@kinde-oss/kinde-auth-nextjs/server";
 
-export default function Checkout() {
-  const cart = useAppSelector((state) => state.cart);
+export default async function Checkout() {
+  const session = await getKindeServerSession();
+  const user = await session.getUser();
+
+  const existUser = user?.email
+    ? await prisma.user.findFirst({
+        where: {
+          email: user.email,
+        },
+      })
+    : null;
   return (
     <>
       <Header />
@@ -17,49 +26,9 @@ export default function Checkout() {
           </p>
           <h3 className="text-bold mb-4 text-2xl">Checkout</h3>
           {/* <form className="flex flex-col gap-4 mt-4 sm:grid sm:grid-cols-[repeat(2,1fr)]  "> */}
-          <OrderForm />
+          <OrderForm userInfo={existUser} />
         </div>
-        <div className="w-[100%] md:w-[45%] bg-gray-100 border-l border-solid h-screen">
-          <div className="w-[90%] mx-auto  py-8">
-            <h4 className="text-bold text-xl mb-4">Order summary</h4>
-            <div className="flex flex-col gap-2">
-              {cart.items.length > 0 &&
-                cart.items.map((item) => (
-                  <div key={item.id} className="flex justify-between mb-8">
-                    <p className="font-medium">{item.name}</p>
-                    <p>
-                      {item.price}${" "}
-                      <span className="dt"> x {item.quantity}</span>
-                    </p>
-                  </div>
-                ))}
-              <div className="flex justify-between">
-                <p className="font-normal">
-                  Subtotal ({cart.items.length} items){" "}
-                </p>
-                <p>
-                  {0} <span className="text-gray-400 font-light"> DT</span>
-                </p>
-              </div>
-
-              <div className="flex justify-between">
-                <p className="font-normal">Shipping</p>
-                <p>
-                  0 <span className="text-gray-400 font-light">DT</span>
-                </p>
-              </div>
-              <div className="flex justify-between">
-                <p>
-                  <strong>Total </strong>
-                </p>
-                <p>
-                  <strong> {cart.total}</strong>
-                  <span className="text-gray-400 font-light"> DT</span>
-                </p>
-              </div>
-            </div>
-          </div>
-        </div>
+        <OrderSummary />
       </div>
     </>
   );
