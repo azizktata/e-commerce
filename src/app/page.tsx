@@ -40,11 +40,11 @@ export default async function Home() {
         <div className="flex flex-col gap-1  md:grid md:grid-cols-[repeat(3,1fr)] mb-8">
           <div className="relative">
             <Image
-              src="/product.jpg"
+              src="/chair1.webp"
               width={1000}
-              height={760}
+              height={400}
               alt="carousel"
-              className="object-cover w-full h-full"
+              className="object-cover w-full h-[400px]"
             />
             <div className="absolute inset-0 items-start text-white pl-8 pb-16 justify-end flex flex-col gap-4">
               <p className="uppercase">must have</p>
@@ -56,11 +56,11 @@ export default async function Home() {
           </div>
           <div className="relative">
             <Image
-              src="/product.jpg"
+              src="/table2.webp"
               width={1000}
-              height={760}
+              height={400}
               alt="carousel"
-              className="object-cover w-full h-full"
+              className="object-cover w-full h-[400px]"
             />
             <div className="absolute inset-0 items-start text-white pl-8 pb-16 justify-end flex flex-col gap-4">
               <p className="uppercase">must have</p>
@@ -72,11 +72,11 @@ export default async function Home() {
           </div>
           <div className="relative">
             <Image
-              src="/product.jpg"
+              src="/decoration.webp"
               width={1000}
-              height={760}
+              height={400}
               alt="carousel"
-              className="object-cover w-full h-full"
+              className="object-cover w-full h-[400px]"
             />
             <div className="absolute inset-0 items-start text-white pl-8 pb-16 justify-end flex flex-col gap-4">
               <p className="uppercase">must have</p>
@@ -113,10 +113,10 @@ export default async function Home() {
         </div>
 
         <div className="mb-20 w-[100%]">
-          <h2 className="text-center text-xl">Featured products</h2>
+          <h2 className="text-center text-xl mb-8">Featured products</h2>
           <Slider
             id="slider"
-            sliderClass="flex gap-1 overflow-x-auto custom-scrollbar  "
+            sliderClass="flex gap-1 overflow-x-auto custom-scrollbar  justify-around"
           >
             {products.map((product) => (
               <Card key={product.id} product={product} />
@@ -124,10 +124,10 @@ export default async function Home() {
           </Slider>
         </div>
         <div className="mb-20 w-[100%]">
-          <h2 className="text-center text-xl">New products</h2>
+          <h2 className="text-center text-xl mb-8">New products</h2>
           <Slider
             id="slider2"
-            sliderClass="flex gap-1 overflow-x-auto custom-scrollbar  "
+            sliderClass="flex gap-1 overflow-x-auto custom-scrollbar justify-around "
           >
             {products.map((product) => (
               <Card key={product.id} product={product} />

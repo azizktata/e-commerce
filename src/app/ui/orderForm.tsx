@@ -4,12 +4,7 @@ import { PlusIcon, MinusIcon } from "@heroicons/react/24/outline";
 import { createOrder } from "@/actions/actions";
 import { useAppSelector } from "../store/hooks";
 
-export default function OrderForm({
-  version = 1,
-  product,
-}: {
-  version?: number;
-}) {
+export default function OrderForm({ version = 1 }: { version?: number }) {
   const [countt, setCountt] = React.useState(0);
   const cart = useAppSelector((state) => state.cart);
 

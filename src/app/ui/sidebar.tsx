@@ -45,7 +45,7 @@ export default function Sidebar() {
 
         {cart.items.map((item) => (
           <div key={item.id} className="flex gap-4">
-            <Image src="/product.jpg" alt="" width={150} height={150} />
+            <Image src={item.image} alt="" width={150} height={150} />
             <div className="flex flex-col gap-2">
               <h5>{item.name}</h5>
               <p className="cart-section-price">

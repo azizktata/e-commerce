@@ -3,6 +3,7 @@ import "./globals.css";
 import { jost } from "./ui/fonts";
 import Sidebar from "./ui/sidebar";
 import ClientProvider from "./store/provider";
+import { Toaster } from "react-hot-toast";
 
 export const metadata: Metadata = {
   title: "Create Next App",
@@ -20,6 +21,7 @@ export default function RootLayout({
         {" "}
         <ClientProvider>
           <Sidebar />
+          <Toaster />
           {children}
         </ClientProvider>
       </body>
