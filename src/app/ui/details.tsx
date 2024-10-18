@@ -6,18 +6,19 @@ import { PlusIcon, MinusIcon } from "@heroicons/react/24/outline";
 import Image from "next/image";
 import { useAppDispatch } from "../store/hooks";
 import { addToCart } from "../store/slices/cartSlice";
+import { Product } from "@prisma/client";
 
-export default function Details({ product }) {
+export default function Details({ product }: { product: Product }) {
   const dispatch = useAppDispatch();
 
-  const [count, setCount] = React.useState(0);
+  const [count, setCount] = React.useState(1);
 
   const addCount = () => {
     setCount((prev) => prev + 1);
   };
 
   const minusCount = () => {
-    if (count > 0) {
+    if (count > 1) {
       setCount((prev) => prev - 1);
     }
   };

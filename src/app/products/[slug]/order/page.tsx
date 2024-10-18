@@ -1,6 +1,7 @@
 import Header from "@/app/ui/header";
 import OrderForm from "@/app/ui/orderForm";
 import prisma from "@/lib/db";
+import { getKindeServerSession } from "@kinde-oss/kinde-auth-nextjs/server";
 import Image from "next/image";
 
 import Link from "next/link";
@@ -17,6 +18,23 @@ export default async function ProductOrder({
       slug: params.slug,
     },
   });
+  const session = await getKindeServerSession();
+  const user = await session.getUser();
+  const existUser = user?.email
+    ? await prisma.user.findFirst({
+        where: {
+          email: user.email,
+        },
+      })
+    : null;
+
+  const userInfo = existUser || {
+    username: user?.username || "",
+    email: user?.email || "",
+    phone: "",
+    address: "",
+  };
+
   if (!product) {
     notFound();
   }
@@ -26,8 +44,8 @@ export default async function ProductOrder({
       <div className="2xl:w-[96%] 2xl:mx-auto lg:py-8 lg:px-16 md:py-12 md:px-6 py-9 px-4  flex flex-col">
         <div className=" flex flex-col items-start sm:w-96 sm:self-center md:w-8/12 lg:w-full  lg:self-start">
           <div className="text-gray-500 mb-8">
-            <Link href={"."}>Accueil </Link> /{" "}
-            <Link href={"../products"}>Products</Link> /{" "}
+            <Link href={"/"}>Accueil </Link> /{" "}
+            <Link href={"/products"}>Products</Link> /{" "}
             <span>{product?.name}</span>
           </div>
 
@@ -40,7 +58,11 @@ export default async function ProductOrder({
           {/* <!-- Description Div --> */}
 
           <div className="  w-full sm:w-96 md:w-8/12 lg:w-6/12 items-center">
-            <OrderForm version={2} />
+            <OrderForm
+              userInfo={userInfo}
+              product={product}
+              showSelectQuantity={true}
+            />
           </div>
 
           <div className=" w-full sm:w-96 md:w-8/12  lg:w-6/12 flex lg:flex-row flex-col lg:gap-8 sm:gap-6 gap-4">

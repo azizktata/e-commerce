@@ -2,12 +2,15 @@ import Link from "next/link";
 import Header from "../ui/header";
 import Card from "../ui/card";
 import Select from "../ui/select";
-// import { productss } from "../types";
 import prisma from "@/lib/db";
 
-export default async function Products({ searchParams }) {
+export default async function Products({
+  searchParams,
+}: {
+  searchParams: { category: string; sort: "asc" | "desc" };
+}) {
   const categories: string[] = ["tables", "kitchen", "accessories"];
-  console.log(searchParams);
+
   const products = await prisma.product.findMany({
     where: { category: searchParams.category },
     orderBy: {
@@ -22,7 +25,7 @@ export default async function Products({ searchParams }) {
       <div className="w-[100%] pt-8">
         <div className="w-[90%] mx-auto flex flex-col gap-2">
           <div className="text-gray-500 mb-8">
-            <Link href={"."}>Accueil /</Link> <span> Voyages</span>
+            <Link href={"/"}>Accueil /</Link> {"Products"}
           </div>
           <div className="flex mb-4">
             <Select options={categories} />

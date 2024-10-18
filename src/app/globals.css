@@ -60,7 +60,7 @@ body {
   }
 }
 input:not(#counter) {
-  padding: 1.25em;
+  padding: 1em;
   border: 1px solid #e0e0e0;
   text-align: inherit;
 }
