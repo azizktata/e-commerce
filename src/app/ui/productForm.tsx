@@ -44,7 +44,7 @@ export default function ProductForm({ categories }: ProductFormProps) {
         />
       </div>
       <div className="m-4">
-        <label htmlFor="image">Image</label>
+        <label htmlFor="image">Image URL</label>
         <input type="text" name="image" id="image" className="block border" />
       </div>
 

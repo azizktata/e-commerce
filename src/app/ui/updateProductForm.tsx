@@ -1,6 +1,6 @@
 "use client";
-import { updateProduct } from "@/actions/actions";
-import { Product } from "@prisma/client";
+import { deleteProduct, updateProduct } from "@/actions/actions";
+import Image from "next/image";
 import React from "react";
 import toast from "react-hot-toast";
 interface Category {
@@ -12,7 +12,7 @@ export default function UpdateProductForm({
   product,
   categories,
 }: {
-  product: Product;
+  product: any;
   categories: Category[];
 }) {
   async function handleSubmit(formData: FormData) {
@@ -25,12 +25,37 @@ export default function UpdateProductForm({
       }
     }
   }
+  async function handleDelete(id) {
+    const res = await deleteProduct(id);
+    if (res) {
+      if (res?.success) {
+        toast.success(res.message);
+      } else {
+        toast.error(res!.message);
+      }
+    }
+  }
 
   return (
     <div className="bg-white rounded-lg shadow-lg p-4">
       <div className="flex justify-between ">
-        <h2 className="text-xl font-semibold mb-4">Product Details</h2>
-        <button className="self-start text-2xl">&times;</button>
+        <h2 className="text-xl font-semibold mb-4">{product.name}</h2>
+
+        <form action={() => handleDelete(product.id)}>
+          <button type="submit" className="self-start text-2xl">
+            &times;
+          </button>
+        </form>
+      </div>
+      <div className="flex justify-center">
+        {product.images[0]?.url && (
+          <Image
+            src={product.images[0]?.url}
+            alt="Sample Image"
+            width={300}
+            height={300}
+          />
+        )}
       </div>
       <form
         className="flex flex-col md:grid md:grid-cols-[repeat(2,1fr)] items-center"
@@ -80,13 +105,22 @@ export default function UpdateProductForm({
         </div>
         <div className="m-4">
           <label htmlFor="image">Image</label>
-          <input
-            defaultValue={product.image}
-            type="text"
-            name="image"
-            id="image"
-            className="block border"
-          />
+          {product.images[0] ? (
+            <input
+              defaultValue={product.images[0].url}
+              type="text"
+              name="image"
+              id="image"
+              className="block border"
+            />
+          ) : (
+            <input
+              type="text"
+              name="image"
+              id="image"
+              className="block border"
+            />
+          )}
         </div>
 
         <div className="m-4">

@@ -12,7 +12,15 @@ export default async function Products({
   const categories: string[] = ["tables", "kitchen", "accessories"];
 
   const products = await prisma.product.findMany({
-    where: { category: searchParams.category },
+    include: {
+      categories: true,
+      images: {
+        select: {
+          url: true,
+        },
+      },
+    },
+    where: { categories: { some: { name: searchParams.category } } },
     orderBy: {
       price: searchParams.sort,
     },

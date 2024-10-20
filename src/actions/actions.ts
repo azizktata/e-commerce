@@ -72,24 +72,26 @@ export async function addProduct(formData: FormData) {
   try {
     const name = formData.get('name') as string;
     const slug = name.toLowerCase().replace(/\s+/g, '-')
-    const image = formData.get('image') as string;
     const price = Number(formData.get('price'));
     const inventory = Number(formData.get('quantity'));
     const description = formData.get('description') as string;
     const newCategory = formData.get('newCategory') as string;
     const selectedCategories = formData.getAll('categories') as string[];
-  
+    
     const categoryIds = [...selectedCategories];
-  
-    // Create a new category if provided
     if (newCategory) {
       const createdCategory = await prisma.category.create({
         data: { name: newCategory, slug: newCategory.toLowerCase().replace(/\s+/g, '-') },
       });
       categoryIds.push(createdCategory.id);
     }
+    
+    
+    
+    
+    const imageUrl = formData.get('image') as string;
+
   
-    // Create the product with associated categories
     const res = await prisma.product.create({
       data: {
         name,
@@ -97,7 +99,11 @@ export async function addProduct(formData: FormData) {
         price,
         inventory,
         description,
-        image,
+        images: {
+          create: {
+            url: imageUrl,
+          },
+        },
         categories: {
           connect: categoryIds.map((id) => ({ id })),
         },
@@ -112,9 +118,9 @@ export async function addProduct(formData: FormData) {
     
   }
 
-  // Revalidate the products page to show the updated data
  
 }
+
 
 export async function updateProduct(formData: FormData) {
   const { isAuthenticated, getPermission } = await getKindeServerSession();
@@ -129,8 +135,7 @@ export async function updateProduct(formData: FormData) {
   try {
     const name = formData.get('name') as string;
     const slug = name.toLowerCase().replace(/\s+/g, '-')
-    const image = formData.get('image') as string;
-    const price = Number(formData.get('price'));
+      const price = Number(formData.get('price'));
     const inventory = Number(formData.get('quantity'));
     const description = formData.get('description') as string;
     const newCategory = formData.get('newCategory') as string;
@@ -145,7 +150,19 @@ export async function updateProduct(formData: FormData) {
       });
       categoryIds.push(createdCategory.id);
     }
-  
+    const imageUrl = formData.get('image') as string 
+    const product = await prisma.product.findFirst({
+      where: { id: formData.get('id') as string },
+      select: { images: { select: { id: true } }}
+    });
+    if(!product){
+      return { success: false, message: 'Error updating product' };
+    }
+    
+    const savedImage = await prisma.image.update({
+      where: {id: product.images[0].id},
+      data: { url: imageUrl },
+    });
     // Create the product with associated categories
     const res = await prisma.product.update({
       where: { id: formData.get('id') as string },
@@ -155,7 +172,9 @@ export async function updateProduct(formData: FormData) {
         price,
         inventory,
         description,
-        image,
+        images: {
+          connect: { id: savedImage.id },
+        },
         categories: {
           connect: categoryIds.map((id) => ({ id })),
         },
@@ -172,4 +191,38 @@ export async function updateProduct(formData: FormData) {
 
   // Revalidate the products page to show the updated data
  
+}
+export async function deleteProduct(id:string) {
+  const { isAuthenticated, getPermission } = await getKindeServerSession();
+
+  if (!(await isAuthenticated())) {
+    return redirect("/");
+  }
+  const requieredPermission = await getPermission("admin");
+  if (!requieredPermission) {
+    return redirect("/");
+  }
+  const product = await prisma.product.findFirst({
+    where: { id: id },
+    select: { images: { select: { id: true } }}
+  });
+  if(!product){
+    return { success: false, message: 'Error updating product' };
+  }
+  try {
+    if(product.images.length > 0)
+  {
+    await prisma.image.delete({
+      where: { id: product.images[0].id },
+    });
+
+  }
+    await prisma.product.delete({
+      where: { id },
+    });
+    revalidatePath('/admin/inventory');
+    return { success: true, message: 'Product deleted successfully!' };
+  } catch  {
+    return { success: false, message: 'Error deleting product' };
+  }
 }

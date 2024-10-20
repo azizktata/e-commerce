@@ -29,7 +29,7 @@ export default function Sidebar() {
   return (
     <div
       id="sidebar"
-      className="fixed z-10 sm:w-[75%] md:w-[33%] h-screen top-0 right-0 bg-gray-100 transform translate-x-full  transition-transform duration-300"
+      className="fixed z-20 sm:w-[75%] md:w-[33%] h-screen top-0 right-0 bg-gray-100 transform translate-x-full  transition-transform duration-300"
     >
       <div className="flex flex-col gap-8 p-8">
         <div className="flex justify-between border-b border-gray-300 pb-4">

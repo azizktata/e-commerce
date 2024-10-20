@@ -1,6 +1,8 @@
 import ProductForm from "@/app/ui/productForm";
 import UpdateProductForm from "@/app/ui/updateProductForm";
 import prisma from "@/lib/db";
+import { CldImage } from "next-cloudinary";
+import Image from "next/image";
 import React from "react";
 
 export default async function page() {
@@ -8,6 +10,11 @@ export default async function page() {
   const products = await prisma.product.findMany({
     include: {
       categories: true,
+      images: {
+        select: {
+          url: true,
+        },
+      },
       _count: {
         select: {
           items: true,
@@ -56,9 +63,9 @@ export default async function page() {
           </tbody>
         </table>
       </div>
-      <div className="flex min-h-screen items-start justify-center bg-gray-100 p-4">
+      <div className="flex min-h-screen items-start justify-between bg-gray-100 p-4">
         {/* Product Details Card */}
-        <div className="w-2/3 mr-2 flex flex-col gap-2  md:grid md:grid-cols-[repeat(3,1fr)] ">
+        <div className="w-2/3 mr-2 flex flex-col gap-2  md:grid md:grid-cols-[repeat(2,1fr)] ">
           {products.map((product) => (
             <div key={product.id}>
               <UpdateProductForm product={product} categories={categories} />
