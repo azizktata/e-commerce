@@ -1,5 +1,5 @@
 import { Item } from "@/app/types";
-import { createAsyncThunk, createSlice, PayloadAction } from "@reduxjs/toolkit";
+import {  createSlice, PayloadAction } from "@reduxjs/toolkit";
 
 interface CartState {
   items: Item[];

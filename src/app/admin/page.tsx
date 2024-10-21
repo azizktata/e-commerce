@@ -221,6 +221,7 @@ const Dashboard = async () => {
       </div>
 
       {/* Top 5 Sold Products Chart */}
+
       <div className="bg-white p-4 rounded-lg shadow mb-6">
         <h3 className="text-xl font-semibold mb-4">Top 5 Sold Products</h3>
         <TopProductsChart
@@ -234,9 +235,6 @@ const Dashboard = async () => {
         </h3>
         <OrderTrendsChart labels={orderTrendLabels} data={orderTrendData} />
       </div>
-
-      {/* Recent Orders Table */}
-      {/* Add your existing recent orders table here */}
     </div>
   );
 };

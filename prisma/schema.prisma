@@ -11,12 +11,11 @@ datasource db {
 }
 
 model User {
-  id       String @id @default(cuid())
-  email    String @unique
-  username String
-  phone    String
-  address  String
-
+  id        String   @id @default(cuid())
+  email     String   @unique
+  username  String
+  phone     String
+  address   String
   Orders    Order[]
   createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt
@@ -32,18 +31,17 @@ model Image {
 }
 
 model Product {
-  id          String @id @default(cuid())
+  id          String      @id @default(cuid())
   price       Int
   name        String
-  slug        String @unique
+  slug        String      @unique
   description String
-
-  inventory  Int
-  categories Category[]
-  items      OrderItem[]
-  images     Image[]
-  createdAt  DateTime    @default(now())
-  updatedAt  DateTime    @updatedAt
+  inventory   Int
+  categories  Category[]
+  items       OrderItem[]
+  images      Image[]
+  createdAt   DateTime    @default(now())
+  updatedAt   DateTime    @updatedAt
 }
 
 model Category {

@@ -14,11 +14,7 @@ export default async function Products({
   const products = await prisma.product.findMany({
     include: {
       categories: true,
-      images: {
-        select: {
-          url: true,
-        },
-      },
+      images: true,
     },
     where: { categories: { some: { name: searchParams.category } } },
     orderBy: {

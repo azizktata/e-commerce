@@ -1,5 +1,7 @@
 "use client";
 import { deleteProduct, updateProduct } from "@/actions/actions";
+import { Product } from "@prisma/client";
+
 import Image from "next/image";
 import React from "react";
 import toast from "react-hot-toast";
@@ -7,13 +9,20 @@ interface Category {
   id: string;
   name: string;
 }
+interface image {
+  url: string;
+}
 
 export default function UpdateProductForm({
   product,
   categories,
+  productImages,
+  productCategories,
 }: {
-  product: any;
+  product: Product;
   categories: Category[];
+  productImages: image[];
+  productCategories: Category[];
 }) {
   async function handleSubmit(formData: FormData) {
     const res = await updateProduct(formData);
@@ -25,7 +34,7 @@ export default function UpdateProductForm({
       }
     }
   }
-  async function handleDelete(id) {
+  async function handleDelete(id: string) {
     const res = await deleteProduct(id);
     if (res) {
       if (res?.success) {
@@ -48,9 +57,9 @@ export default function UpdateProductForm({
         </form>
       </div>
       <div className="flex justify-center">
-        {product.images[0]?.url && (
+        {productImages[0]?.url && (
           <Image
-            src={product.images[0]?.url}
+            src={productImages[0]?.url}
             alt="Sample Image"
             width={300}
             height={300}
@@ -105,9 +114,9 @@ export default function UpdateProductForm({
         </div>
         <div className="m-4">
           <label htmlFor="image">Image</label>
-          {product.images[0] ? (
+          {productImages[0].url ? (
             <input
-              defaultValue={product.images[0].url}
+              defaultValue={productImages[0].url}
               type="text"
               name="image"
               id="image"
@@ -142,7 +151,7 @@ export default function UpdateProductForm({
                   name="categories"
                   value={category.id}
                   id={category.id}
-                  defaultChecked={product.categories.some(
+                  defaultChecked={productCategories.some(
                     (c) => c.id === category.id
                   )}
                 />

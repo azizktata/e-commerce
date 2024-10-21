@@ -1,12 +1,6 @@
 import Image from "next/image";
 import Header from "./ui/header";
 
-import Link from "next/link";
-import {
-  TruckIcon,
-  PhoneIcon,
-  MegaphoneIcon,
-} from "@heroicons/react/24/outline";
 import Slider from "./ui/slider";
 import Card from "./ui/card";
 import prisma from "@/lib/db";
@@ -17,11 +11,7 @@ export default async function Home() {
   const products = await prisma.product.findMany({
     include: {
       categories: true,
-      images: {
-        select: {
-          url: true,
-        },
-      },
+      images: true,
     },
   });
   return (

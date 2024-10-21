@@ -18,6 +18,9 @@ export default async function ProductDetails({
     where: {
       slug: params.slug,
     },
+    include: {
+      images: true,
+    },
   });
   if (!product) {
     notFound();

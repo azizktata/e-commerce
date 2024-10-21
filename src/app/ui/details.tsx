@@ -6,9 +6,13 @@ import { PlusIcon, MinusIcon } from "@heroicons/react/24/outline";
 import Image from "next/image";
 import { useAppDispatch } from "../store/hooks";
 import { addToCart } from "../store/slices/cartSlice";
-import { Product } from "@prisma/client";
+import { Prisma } from "@prisma/client";
 
-export default function Details({ product }: { product: Product }) {
+type ProductWithImages = Prisma.ProductGetPayload<{
+  include: { images: true };
+}>;
+
+export default function Details({ product }: { product: ProductWithImages }) {
   const dispatch = useAppDispatch();
 
   const [count, setCount] = React.useState(1);
@@ -89,13 +93,13 @@ export default function Details({ product }: { product: Product }) {
         <div className=" w-full lg:w-8/12 bg-gray-100 flex justify-center items-center">
           <Image
             className="relative w-40"
-            src={product.image}
+            src={product.images[0].url || "/fallback.png"}
             alt=""
             width={160}
             height={160}
           />
         </div>
-        <div className=" w-full lg:w-4/12 grid lg:grid-cols-1 sm:grid-cols-4 grid-cols-2 gap-6">
+        {/* <div className=" w-full lg:w-4/12 grid lg:grid-cols-1 sm:grid-cols-4 grid-cols-2 gap-6">
           <div className="bg-gray-100 flex justify-center items-center py-4">
             <Image
               className="relative w-40"
@@ -125,7 +129,7 @@ export default function Details({ product }: { product: Product }) {
               />
             </div>
           </div>
-        </div>
+        </div> */}
       </div>
     </>
   );

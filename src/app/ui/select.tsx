@@ -3,18 +3,6 @@ import React from "react";
 import { usePathname, useRouter, useSearchParams } from "next/navigation";
 import { useCallback } from "react";
 
-// const _options = { next: { revalidate: 60 } };
-
-// const POST_QUERY_COUNT = (sortFilter: string, destinationFilter: string) =>
-//   defineQuery(`
-//   count(
-//     *[_type == "post"
-//     ${sortFilter ? `&& type == "${typeFilter}"` : ""}
-//     ${destinationFilter ? `&& destination == "${destinationFilter}"` : ""}
-//     ]
-//   )
-// `);
-
 export default function Select({ options }: { options: string[] }) {
   const router = useRouter();
   const pathname = usePathname();

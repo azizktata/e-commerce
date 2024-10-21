@@ -4,9 +4,11 @@ import { PlusIcon, MinusIcon } from "@heroicons/react/24/outline";
 import { createOrder } from "@/actions/actions";
 import { useAppDispatch, useAppSelector } from "../store/hooks";
 import toast from "react-hot-toast";
-import { addToCart, clearCart } from "../store/slices/cartSlice";
-import { Product } from "@prisma/client";
-
+import { clearCart } from "../store/slices/cartSlice";
+import { Prisma } from "@prisma/client";
+type ProductWithImages = Prisma.ProductGetPayload<{
+  include: { images: true };
+}>;
 export default function OrderForm({
   showSelectQuantity,
   userInfo,
@@ -19,7 +21,7 @@ export default function OrderForm({
     phone: string;
     address: string;
   };
-  product?: Product;
+  product?: ProductWithImages;
 }) {
   const [countt, setCountt] = React.useState(1);
   const cart = useAppSelector((state) => state.cart);

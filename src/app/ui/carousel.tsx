@@ -2,7 +2,7 @@
 import React from "react";
 import { ChevronRightIcon, ChevronLeftIcon } from "@heroicons/react/24/outline";
 
-export default function Carousel({ children }) {
+export default function Carousel({ children }: { children: React.ReactNode }) {
   return (
     <>
       <div className="sliderCarousel h-[800px]">{children}</div>

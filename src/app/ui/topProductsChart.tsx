@@ -4,7 +4,13 @@
 import { Bar } from "react-chartjs-2"; // Import Chart.js components
 import "chart.js/auto"; // Automatically register the required components
 
-const TopProductsChart = ({ productLabels, productSales }) => {
+const TopProductsChart = ({
+  productLabels,
+  productSales,
+}: {
+  productLabels: (string | undefined)[];
+  productSales: (number | null)[];
+}) => {
   return (
     <Bar
       data={{

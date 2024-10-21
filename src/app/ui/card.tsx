@@ -4,10 +4,16 @@ import Image from "next/image";
 import React from "react";
 import { useAppDispatch } from "../store/hooks";
 import { addToCart } from "../store/slices/cartSlice";
-// import { Item } from "../types";
 import Link from "next/link";
-
-export default function Card({ product }) {
+import { Prisma } from "@prisma/client";
+type ProductWithImagesAndCategories = Prisma.ProductGetPayload<{
+  include: { images: true; categories: true };
+}>;
+export default function Card({
+  product,
+}: {
+  product: ProductWithImagesAndCategories;
+}) {
   const dispatch = useAppDispatch();
   return (
     <div className="w-full flex self-stretch flex-col min-w-[280px] bg-white border border-gray-200 rounded-lg shadow dark:bg-gray-800 dark:border-gray-700">

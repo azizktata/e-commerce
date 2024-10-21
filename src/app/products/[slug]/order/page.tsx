@@ -17,6 +17,9 @@ export default async function ProductOrder({
     where: {
       slug: params.slug,
     },
+    include: {
+      images: true,
+    },
   });
   const session = await getKindeServerSession();
   const user = await session.getUser();
@@ -69,13 +72,13 @@ export default async function ProductOrder({
             <div className=" w-full lg:w-8/12 bg-gray-100 flex justify-center items-center">
               <Image
                 className="relative w-40"
-                src={product.image}
+                src={product.images[0].url || "/fallback.png"}
                 alt=""
                 width={160}
                 height={160}
               />
             </div>
-            <div className=" w-full lg:w-4/12 grid lg:grid-cols-1 sm:grid-cols-4 grid-cols-2 gap-6">
+            {/* <div className=" w-full lg:w-4/12 grid lg:grid-cols-1 sm:grid-cols-4 grid-cols-2 gap-6">
               <div className="bg-gray-100 flex justify-center items-center py-4">
                 <Image
                   className="relative w-40"
@@ -103,7 +106,7 @@ export default async function ProductOrder({
                   height={160}
                 />
               </div>
-            </div>
+            </div> */}
           </div>
         </div>
       </div>

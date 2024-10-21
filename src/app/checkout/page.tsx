@@ -33,7 +33,6 @@ export default async function Checkout() {
             <Link href={"/"}>Accueil </Link> /{" Checkout"}
           </div>
           <h3 className="text-bold mb-4 text-2xl">Checkout</h3>
-          {/* <form className="flex flex-col gap-4 mt-4 sm:grid sm:grid-cols-[repeat(2,1fr)]  "> */}
           <OrderForm userInfo={userInfo} />
         </div>
         <OrderSummary />

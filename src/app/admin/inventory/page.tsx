@@ -1,8 +1,7 @@
 import ProductForm from "@/app/ui/productForm";
 import UpdateProductForm from "@/app/ui/updateProductForm";
 import prisma from "@/lib/db";
-import { CldImage } from "next-cloudinary";
-import Image from "next/image";
+
 import React from "react";
 
 export default async function page() {
@@ -68,7 +67,12 @@ export default async function page() {
         <div className="w-2/3 mr-2 flex flex-col gap-2  md:grid md:grid-cols-[repeat(2,1fr)] ">
           {products.map((product) => (
             <div key={product.id}>
-              <UpdateProductForm product={product} categories={categories} />
+              <UpdateProductForm
+                product={product}
+                productImages={product.images}
+                productCategories={product.categories}
+                categories={categories}
+              />
             </div>
           ))}
         </div>
