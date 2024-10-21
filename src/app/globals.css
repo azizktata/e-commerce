@@ -5,7 +5,12 @@
 :root {
   --background: #ffffff;
   --foreground: #171717;
+  --bg-primary-color: #f7fafb;
+  --bg-secondary-color: #02434f;
+  --btn-text-color: #22f084;
+  --bg-footer-color: #f3f3f3;
 }
+/* fontfamily: TWK Everett for */
 
 @media (prefers-color-scheme: dark) {
   :root {

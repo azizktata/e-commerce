@@ -226,3 +226,27 @@ export async function deleteProduct(id:string) {
     return { success: false, message: 'Error deleting product' };
   }
 }
+
+export async function updateOrderStatus(id: string, status: string) {
+  const { isAuthenticated, getPermission } = await getKindeServerSession();
+
+  if (!(await isAuthenticated())) {
+    return redirect("/");
+  }
+  const requieredPermission = await getPermission("admin");
+  if (!requieredPermission) {
+    return redirect("/");
+  }
+  try {
+    const res = await prisma.order.update({
+      where: { id },
+      data: { status },
+    });
+    if (res) {
+      revalidatePath('/admin/orders');
+      return { success: true, message: 'Order status updated successfully!' };
+    }
+  } catch  {
+    return { success: false, message: 'Error updating order status' };
+  }
+}

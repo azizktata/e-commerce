@@ -14,7 +14,10 @@
 //         name: 'Product 2',
 //         price: 2000,
 //         description: 'This is product 2',
-//         image: '/product.jpg',
+//         images: [{
+//             url: 'https://res.cloudinary.com/dflhokygl/image/upload/v1729438250/test_k6hprk.jpg',
+
+//         }],
 //         category: 'kitchen',
 //         slug: 'product-2'
 //     },
