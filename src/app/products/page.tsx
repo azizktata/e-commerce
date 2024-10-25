@@ -26,8 +26,8 @@ export default async function Products({
     <>
       <Header />
 
-      <div className="w-[100%] pt-8">
-        <div className="w-[90%] mx-auto flex flex-col gap-2">
+      <div className="w-[100%] h-screen bg-primary pt-8">
+        <div className="w-[70%] mx-auto flex flex-col gap-2">
           <div className="text-gray-500 mb-8">
             <Link href={"/"}>Accueil /</Link> {"Products"}
           </div>

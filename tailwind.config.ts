@@ -13,6 +13,7 @@ const config: Config = {
         foreground: 'var(--foreground)',
         'primary': 'var(--bg-primary-color)',
         'secondary': 'var(--bg-secondary-color)',
+        'darler-secondary': 'var(--bg-darker-secondary-color)',
         'btn-text': 'var(--btn-text-color)',
         'bg-footer': 'var(--bg-footer-color)',
       },

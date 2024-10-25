@@ -28,8 +28,8 @@ export default function Details({ product }: { product: ProductWithImages }) {
   };
 
   return (
-    <>
-      <div className="  w-full sm:w-96 md:w-8/12 lg:w-6/12 items-center">
+    <div className="w-[70%] xs:w-[80%] sm:flex sm:flex-col  mx-auto gap-8 md:grid md:grid-cols-[repeat(3,1fr)]  ">
+      <div className="col-span-2 ">
         <h2 className="font-semibold lg:text-4xl text-3xl lg:leading-9 leading-7 text-gray-800 ">
           {product.name}
         </h2>
@@ -89,10 +89,10 @@ export default function Details({ product }: { product: ProductWithImages }) {
         </a>
       </div>
 
-      <div className=" w-full sm:w-96 md:w-8/12  lg:w-6/12 flex lg:flex-row flex-col lg:gap-8 sm:gap-6 gap-4">
-        <div className=" w-full lg:w-8/12 bg-gray-100 flex justify-center items-center">
+      <div className="w-full bg-primary flex">
+        <div className="w-full flex justify-center items-center">
           <Image
-            className="relative w-40"
+            className=" relative w-60 "
             src={product.images[0].url || "/fallback.png"}
             alt=""
             width={160}
@@ -131,6 +131,6 @@ export default function Details({ product }: { product: ProductWithImages }) {
           </div>
         </div> */}
       </div>
-    </>
+    </div>
   );
 }
