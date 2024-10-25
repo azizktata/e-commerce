@@ -1,4 +1,6 @@
 import prisma from "@/lib/db";
+import { getKindeServerSession } from "@kinde-oss/kinde-auth-nextjs/server";
+import { redirect } from "next/navigation";
 import React from "react";
 
 export default async function Users() {
@@ -9,6 +11,15 @@ export default async function Users() {
       },
     },
   });
+  const { isAuthenticated, getPermission } = await getKindeServerSession();
+
+  if (!(await isAuthenticated())) {
+    return redirect("/");
+  }
+  const requieredPermission = await getPermission("admin");
+  if (!requieredPermission?.isGranted) {
+    return redirect("/");
+  }
   return (
     <div className="min-h-screen">
       {" "}

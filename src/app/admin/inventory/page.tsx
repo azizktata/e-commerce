@@ -1,10 +1,22 @@
 import ProductForm from "@/app/ui/productForm";
 import UpdateProductForm from "@/app/ui/updateProductForm";
 import prisma from "@/lib/db";
+import { getKindeServerSession } from "@kinde-oss/kinde-auth-nextjs/server";
+import { redirect } from "next/navigation";
 
 import React from "react";
 
 export default async function page() {
+  const { isAuthenticated, getPermission } = await getKindeServerSession();
+
+  if (!(await isAuthenticated())) {
+    return redirect("/");
+  }
+  const requieredPermission = await getPermission("admin");
+  if (!requieredPermission?.isGranted) {
+    return redirect("/");
+  }
+
   const categories = await prisma.category.findMany();
   const products = await prisma.product.findMany({
     include: {

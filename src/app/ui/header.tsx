@@ -9,9 +9,11 @@ import { KindeUser } from "@kinde-oss/kinde-auth-nextjs/types";
 export default function Header({
   isAuthenticated,
   user,
+  isAdmin,
 }: {
   isAuthenticated: boolean;
   user: KindeUser<any> | null;
+  isAdmin: boolean;
 }) {
   const cart = useAppSelector((state) => state.cart);
   const pathname = usePathname();
@@ -48,17 +50,31 @@ export default function Header({
                     ? "border-b border-solid border-green-500"
                     : ""
                 }`}
-                href="./products"
+                href="/products"
               >
                 Shop
               </Link>
             </li>
+            {isAdmin && (
+              <li>
+                <Link
+                  className={`${
+                    pathname === "/admin"
+                      ? "border-b border-solid border-green-500"
+                      : ""
+                  }`}
+                  href="/admin"
+                >
+                  Admin
+                </Link>
+              </li>
+            )}
             {isAuthenticated ? (
               <>
                 <li>
                   <Link href="/api/auth/logout">Logout</Link>
                 </li>
-                {user?.picture && (
+                {user?.picture ? (
                   <li>
                     <Image
                       src={user.picture}
@@ -68,6 +84,11 @@ export default function Header({
                       className="h-6 w-6 rounded-full"
                     />
                   </li>
+                ) : (
+                  <div className="avatar">
+                    {user?.given_name?.[0]}
+                    {user?.family_name?.[0]}
+                  </div>
                 )}
                 <li></li>
               </>

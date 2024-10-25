@@ -66,7 +66,7 @@ export async function addProduct(formData: FormData) {
     return redirect("/");
   }
   const requieredPermission = await getPermission("admin");
-  if (!requieredPermission) {
+  if (!requieredPermission?.isGranted) {
     return redirect("/");
   }
   try {
@@ -129,7 +129,7 @@ export async function updateProduct(formData: FormData) {
     return redirect("/");
   }
   const requieredPermission = await getPermission("admin");
-  if (!requieredPermission) {
+  if (!requieredPermission?.isGranted) {
     return redirect("/");
   }
   try {
@@ -199,7 +199,7 @@ export async function deleteProduct(id:string) {
     return redirect("/");
   }
   const requieredPermission = await getPermission("admin");
-  if (!requieredPermission) {
+  if (!requieredPermission?.isGranted) {
     return redirect("/");
   }
   const product = await prisma.product.findFirst({
@@ -234,7 +234,7 @@ export async function updateOrderStatus(id: string, status: string) {
     return redirect("/");
   }
   const requieredPermission = await getPermission("admin");
-  if (!requieredPermission) {
+  if (!requieredPermission?.isGranted) {
     return redirect("/");
   }
   try {

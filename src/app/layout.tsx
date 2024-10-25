@@ -17,14 +17,21 @@ export default async function RootLayout({
 }: Readonly<{
   children: React.ReactNode;
 }>) {
-  const { isAuthenticated, getUser } = await getKindeServerSession();
+  const { isAuthenticated, getUser, getPermission } =
+    await getKindeServerSession();
   const user = await getUser();
+  const requieredPermission = await getPermission("admin");
+
   return (
     <html lang="en">
       <body className={`${jost.className}  antialiased`}>
         {" "}
         <ClientProvider>
-          <Header isAuthenticated={await isAuthenticated()} user={user} />
+          <Header
+            isAuthenticated={await isAuthenticated()}
+            user={user}
+            isAdmin={requieredPermission?.isGranted}
+          />
           <Sidebar />
           <Toaster />
           {children}

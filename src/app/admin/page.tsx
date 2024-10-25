@@ -16,13 +16,10 @@ const Dashboard = async () => {
     return redirect("/");
   }
   const requieredPermission = await getPermission("admin");
-  if (!requieredPermission) {
+  if (!requieredPermission?.isGranted) {
     return redirect("/");
   }
-  // const roles = await getRoles();
-  // if (!roles?.find((role) => role.key === "admin")) {
-  //   return redirect("/"); // Redirect to home or an unauthorized page
-  // }
+
   const totalUsers = await prisma.user.count();
   const totalProducts = await prisma.product.count();
   const totalOrders = await prisma.order.count();
