@@ -16,9 +16,7 @@ const OrderStatusDropdown: React.FC<OrderStatusDropdownProps> = ({
 }) => {
   const [status, setStatus] = useState(currentStatus);
 
-  const handleSubmit = async (event) => {
-    event.preventDefault(); // Prevent default form submission
-
+  const handleSubmit = async () => {
     const result = await updateOrderStatus(orderId, status);
     if (result) {
       if (result.success) {
