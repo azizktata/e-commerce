@@ -13,7 +13,7 @@ export default function Header({
 }: {
   isAuthenticated: boolean;
   user: KindeUser<any> | null;
-  isAdmin: boolean;
+  isAdmin: boolean | undefined;
 }) {
   const cart = useAppSelector((state) => state.cart);
   const pathname = usePathname();
