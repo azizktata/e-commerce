@@ -28,9 +28,9 @@ export default async function Products({
           <div className="text-gray-500 mb-8">
             <Link href={"/"}>Accueil /</Link> {"Products"}
           </div>
-          <div className="flex mb-4">
+          <div className="flex mb-4 justify-between flex-wrap items-center ">
             <Select options={categories} />
-            <p className="ml-auto">
+            <p className="py-2">
               <strong>
                 {productsCount > 1
                   ? `${productsCount} Products`

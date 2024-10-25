@@ -74,7 +74,7 @@ export default function Header({
                 <li>
                   <Link href="/api/auth/logout">Logout</Link>
                 </li>
-                {user?.picture ? (
+                {user?.picture && (
                   <li>
                     <Image
                       src={user.picture}
@@ -84,13 +84,7 @@ export default function Header({
                       className="h-6 w-6 rounded-full"
                     />
                   </li>
-                ) : (
-                  <div className="avatar">
-                    {user?.given_name?.[0]}
-                    {user?.family_name?.[0]}
-                  </div>
                 )}
-                <li></li>
               </>
             ) : (
               <li>

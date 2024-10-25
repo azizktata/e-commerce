@@ -52,7 +52,7 @@ export default function Select({ options }: { options: string[] }) {
 
   return (
     <>
-      <div className="flex gap-4">
+      <div className="flex gap-4 ">
         <select
           value={sortFilter || 0}
           onChange={handleChange}
