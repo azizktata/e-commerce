@@ -34,7 +34,10 @@ export default function Sidebar() {
       <div className="flex flex-col gap-8 p-8">
         <div className="flex justify-between border-b border-gray-300 pb-4">
           <h4>
-            Cart <span className="">{cart.items.length}</span>
+            Cart{" "}
+            <span className="bg-green-500 text-white text-xs font-bold  px-2 py-1 rounded-full">
+              {cart.items.length}
+            </span>
           </h4>
           <a href="#">
             <button id="toggleSidebar" className="close-btn">
@@ -76,7 +79,7 @@ export default function Sidebar() {
         </div>
 
         <Link className="w-[100] " href="/checkout">
-          <button className="w-full inline-block px-8 py-4 uppercase bg-[#242020] text-white transition-colors duration-250 hover:bg-[#4f4f4f] hover:translate-x-[1px] hover:translate-y-[1px] focus:bg-[#4f4f4f] focus:translate-x-[1px] focus:translate-y-[1px]">
+          <button className="w-full inline-block px-8 py-4 uppercase bg-secondary text-white transition-colors duration-250 hover:bg-darker-secondary hover:translate-x-[1px] hover:translate-y-[1px] focus:bg-[#4f4f4f] focus:translate-x-[1px] focus:translate-y-[1px]">
             Checkout
           </button>
         </Link>

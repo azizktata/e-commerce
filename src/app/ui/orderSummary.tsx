@@ -7,7 +7,7 @@ export default function OrderSummary() {
   const cart = useAppSelector((state) => state.cart);
 
   return (
-    <div className="w-[100%] md:w-[45%] bg-gray-100 border-l border-solid h-screen">
+    <div className="w-[100%] md:w-[45%] bg-gray-100 border-l border-solid xs:h-auto md:h-screen">
       <div className="w-[90%] mx-auto  py-8">
         <h4 className="text-bold text-xl mb-4">Order summary</h4>
         <div className="flex flex-col gap-2">

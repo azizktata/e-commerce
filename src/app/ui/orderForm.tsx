@@ -77,7 +77,7 @@ export default function OrderForm({
 
   return (
     <form
-      className="flex flex-col gap-4 mt-4 md:grid md:grid-cols-[repeat(2,1fr)]"
+      className="flex flex-col gap-4 mt-4 lg:grid lg:grid-cols-[repeat(2,1fr)]"
       action={handleSubmit}
     >
       <input
@@ -140,7 +140,7 @@ export default function OrderForm({
 
       <button
         type="submit"
-        className="md:col-span-full focus:outline-none focus:ring-2 hover:bg-black focus:ring-offset-2 focus:ring-gray-800 font-medium text-base leading-4 text-white bg-gray-800 w-full py-5 lg:mt-12 mt-6"
+        className="md:col-span-full focus:outline-none focus:ring-2 hover:bg-darker-secondary focus:ring-offset-2 focus:ring-gray-800 font-medium text-base leading-4 text-white bg-secondary w-full py-5 lg:mt-12 mt-6 focus:translate-x-[1px] focus:translate-y-[1px] hover:translate-x-[1px] hover:translate-y-[1px]"
       >
         Purchase
       </button>

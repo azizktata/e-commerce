@@ -27,6 +27,22 @@ const Dashboard = async () => {
   const totalProducts = await prisma.product.count();
   const totalOrders = await prisma.order.count();
 
+  const totalOrdersPending = await prisma.order.count({
+    where: {
+      status: "Pending",
+    },
+  });
+  const totalOrdersCompleted = await prisma.order.count({
+    where: {
+      status: "Completed",
+    },
+  });
+  const totalOrdersCancelled = await prisma.order.count({
+    where: {
+      status: "Cancelled",
+    },
+  });
+
   const orders = await prisma.order.findMany({
     include: {
       items: { include: { product: true } },
@@ -157,6 +173,20 @@ const Dashboard = async () => {
           <p className="text-2xl">{totalOrders}</p>
         </div>
       </div>
+      <div className="grid grid-cols-3 gap-6 mb-8">
+        <div className="bg-white p-4 rounded-lg shadow">
+          <h3 className="text-xl font-semibold">Orders Pending</h3>
+          <p className="text-2xl">{totalOrdersPending}</p>
+        </div>
+        <div className="bg-white p-4 rounded-lg shadow">
+          <h3 className="text-xl font-semibold">Orders Completed</h3>
+          <p className="text-2xl">{totalOrdersCompleted}</p>
+        </div>
+        <div className="bg-white p-4 rounded-lg shadow">
+          <h3 className="text-xl font-semibold">Orders Canceled</h3>
+          <p className="text-2xl">{totalOrdersCancelled}</p>
+        </div>
+      </div>
 
       <div className="grid grid-cols-3 gap-6 mb-8">
         <div className="bg-white p-4 rounded-lg shadow">
@@ -194,7 +224,7 @@ const Dashboard = async () => {
                 <td className="border border-gray-300 p-2">
                   <OrderStatusDropdown
                     orderId={order.id}
-                    currentStatus="Pending"
+                    currentStatus={order.status}
                   />
                 </td>
                 <td className="border border-gray-300 p-2">

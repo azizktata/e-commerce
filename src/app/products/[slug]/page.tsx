@@ -29,8 +29,8 @@ export default async function ProductDetails({
   return (
     <>
       <Header />
-      <div className="2xl:w-[96%] 2xl:mx-auto lg:py-8 lg:px-16 md:py-12 md:px-6 py-9 px-4  flex flex-col">
-        <div className=" flex flex-col items-start sm:w-96 sm:self-center md:w-8/12 lg:w-full  lg:self-start">
+      <div className="w-screen flex flex-col py-16 bg-primary">
+        <div className=" w-[70%] mx-auto">
           <div className="text-gray-500 mb-8">
             <Link href={".."}>Accueil </Link> /{" "}
             <Link href={"../products"}>Products</Link> /{" "}
@@ -41,7 +41,7 @@ export default async function ProductDetails({
             <Link href={`/products/${params.slug}/order`}>Order</Link>
           </nav>
         </div>
-        <div className="flex justify-center items-center lg:items-start lg:flex-row flex-col gap-8">
+        <div className="flex w-screen">
           {/* <!-- Description Div --> */}
 
           <Details product={product} />

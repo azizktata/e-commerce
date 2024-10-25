@@ -6,6 +6,8 @@ import { useAppDispatch } from "../store/hooks";
 import { addToCart } from "../store/slices/cartSlice";
 import Link from "next/link";
 import { Prisma } from "@prisma/client";
+import { PlusCircleIcon } from "@heroicons/react/24/outline";
+
 type ProductWithImagesAndCategories = Prisma.ProductGetPayload<{
   include: { images: true; categories: true };
 }>;
@@ -16,75 +18,83 @@ export default function Card({
 }) {
   const dispatch = useAppDispatch();
   return (
-    <div className="w-full flex self-stretch flex-col min-w-[280px] bg-white border border-gray-200 rounded-lg shadow dark:bg-gray-800 dark:border-gray-700">
-      <Link href={`../products/${product.slug}`}>
-        <Image
-          className="p-8 rounded-t-lg"
-          src={product.images[0]?.url || "/fallback.png"}
-          alt=""
-          width={1000}
-          height={786}
-        />
-      </Link>
+    // <div className="w-full  flex self-stretch flex-col min-w-[280px]  bg-white border border-gray-200 rounded-lg shadow dark:bg-gray-800 dark:border-gray-700">
+    //   <Link href={`../products/${product.slug}`}>
+    //     <Image
+    //       className="p-8 rounded-t-lg  object-cover "
+    //       src={product.images[0]?.url || "/fallback.png"}
+    //       alt=""
+    //       width={1000}
+    //       height={786}
+    //     />
+    //   </Link>
 
-      <div className="px-5 pb-5 flex-col items-center">
-        <div className="flex items-center justify-center mb-3">
-          <Link href={`../products/${product.slug}`}>
-            <h5 className="text-md font-semibold tracking-tight text-gray-900 dark:text-white uppercase">
-              {product.name}
-            </h5>
-          </Link>
-          {/* <span className="bg-green-100 text-gray-800 text-xs font-semibold px-2.5 py-0.5 rounded dark:bg-blue-200 dark:text-blue-800 ms-3">
-            en stock
-          </span> */}
-        </div>
-        <div className="flex flex-col justify-center items-center">
-          <span className="  font-bold text-gray-900 dark:text-white">
-            {product.price}{" "}
-            <span className="text-gray-700 text-sm font-normal">DT</span>
+    //   <div className="px-3 pb-5 flex-col items-center">
+    //     <div className="flex items-center justify-center mb-3">
+    //       <Link href={`../products/${product.slug}`}>
+    //         <h5 className="text-md font-semibold tracking-tight text-gray-900 dark:text-white uppercase">
+    //           {product.name}
+    //         </h5>
+    //       </Link>
+    //     </div>
+
+    //     <div className="flex flex-col justify-center items-center">
+    //       <span className="  font-bold text-gray-900 dark:text-white">
+    //         {product.price}{" "}
+    //         <span className="text-gray-700 text-sm font-normal">DT</span>
+    //       </span>
+    //     </div>
+    //   </div>
+
+    //   <div className="flex flex-col justify-center gap-2 items-center  mt-auto mb-2.5 px-8">
+    //     <a
+    //       onClick={() => dispatch(addToCart({ item: product, quantity: 1 }))}
+    //       href="#sidebar"
+    //       className=" hover:bg-[#3cf084]  text-green-500 bg-transparent border border-green-500  hover:text-[#002a31] text-[20px] leading-[28px] text-center tracking-[-0.2px]
+    //      shadow-none  py-1.5 transition-colors transitions-border  duration-300 self-stretch "
+    //     >
+    //       Add to cart
+    //     </a>
+    //   </div>
+    // </div>
+
+    <div className="min-w-[280px] mx-auto r">
+      <div className="bg-white rounded-xl  p-4 relative group ounded-lg  border">
+        <Link href={`../products/${product.slug}`}>
+          <span className="absolute top-2 right-2 bg-red-400 text-white text-xs font-semibold px-2 py-1 rounded">
+            Sale
           </span>
-        </div>
-      </div>
-      <div className="flex flex-col justify-center gap-2 items-center  mt-auto mb-2.5 px-2">
+          <div className="overflow-hidden rounded-t-lg">
+            <Image
+              className="p-8 rounded-t-lg w-full h-80 object-cover transform group-hover:scale-105 transition-transform duration-300 ease-in-out"
+              src={product.images[0]?.url || "/fallback.png"}
+              alt=""
+              width={1000}
+              height={786}
+            />
+          </div>
+        </Link>
+
         <a
           onClick={() => dispatch(addToCart({ item: product, quantity: 1 }))}
           href="#sidebar"
-          className=" text-gray-900 bg-gray-100 hover:bg-gray-300 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium border rounded-lg text-sm  px-5 py-1.5 text-center self-stretch "
         >
-          Add to cart
+          <button className=" w-8 h-8 rounded-full border border-gray-300 flex ml-auto text-gray-500 hover:text-green-400 transition">
+            <PlusCircleIcon />
+          </button>
         </a>
       </div>
-      {/* <div className="px-5 pb-5">
-        <div className="flex items-center">
-          <Link href={`../products/${product.slug}`}>
-            <h5 className="text-md font-semibold tracking-tight text-gray-900 dark:text-white uppercase">
-              {product.name}
-            </h5>
-          </Link>
-          <span className="bg-green-100 text-gray-800 text-xs font-semibold px-2.5 py-0.5 rounded dark:bg-blue-200 dark:text-blue-800 ms-3">
-            en stock
-          </span>
-
-        </div>
-      </div> */}
-      {/* <div className="flex flex-col mt-auto  px-5 pb-5">
-        <div className="flex justify-between items-center  mt-2.5 mb-2.5 ">
-          <span className="text-basel font-normal text-gray-500 dark:text-white">
-            {product.categories.map((category) => category.name).join(", ")}
-          </span>
-          <span className="text-3xl font-bold text-gray-900 dark:text-white">
-            {product.price}{" "}
-            <span className="text-gray-500 text-xl font-normal">DT</span>
+      <div className="p-4 text-center">
+        <h2 className="text-lg font-medium text-gray-700">{product.name}</h2>
+        <div className="flex items-center justify-center space-x-2 mt-1">
+          {/* <span className="text-sm text-gray-400 line-through">$280</span> */}
+          <span className="text-xl font-semibold text-gray-900">
+            {" "}
+            {product.price}
+            {" TND "}
           </span>
         </div>
-        <a
-          onClick={() => dispatch(addToCart({ item: product, quantity: 1 }))}
-          href="#sidebar"
-          className=" text-gray-900 bg-gray-100 hover:bg-gray-300 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium border rounded-lg text-sm  px-5 py-2.5 text-center "
-        >
-          Add to cart
-        </a>
-      </div> */}
+      </div>
     </div>
   );
 }
