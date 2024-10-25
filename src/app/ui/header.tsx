@@ -3,13 +3,19 @@ import Link from "next/link";
 import React from "react";
 import { useAppSelector } from "../store/hooks";
 import { usePathname } from "next/navigation";
-import { useKindeBrowserClient } from "@kinde-oss/kinde-auth-nextjs";
 import Image from "next/image";
+import { KindeUser } from "@kinde-oss/kinde-auth-nextjs/types";
 
-export default function Header() {
+export default function Header({
+  isAuthenticated,
+  user,
+}: {
+  isAuthenticated: boolean;
+  user: KindeUser<any> | null;
+}) {
   const cart = useAppSelector((state) => state.cart);
   const pathname = usePathname();
-  const { user, isAuthenticated } = useKindeBrowserClient();
+  // const { user, isAuthenticated } = useKindeBrowserClient();
   return (
     <header>
       <div className="w-[70%] mx-auto py-4 flex flex-col  sm:flex-row sm:justify-between sm:items-center">

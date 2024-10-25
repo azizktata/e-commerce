@@ -1,5 +1,4 @@
 import React from "react";
-import Header from "../ui/header";
 import OrderForm from "../ui/orderForm";
 import OrderSummary from "../ui/orderSummary";
 import prisma from "@/lib/db";
@@ -26,7 +25,6 @@ export default async function Checkout() {
 
   return (
     <>
-      <Header />
       <div className="flex flex-col md:flex-row md:items-baseline gap-8 w-[70%] mx-auto border-t border-solid ">
         <div className="md:w-[65%] pt-8">
           <div className="text-gray-500 mb-8">

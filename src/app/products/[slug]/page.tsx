@@ -1,4 +1,3 @@
-import Header from "@/app/ui/header";
 import React from "react";
 import Link from "next/link";
 import Details from "@/app/ui/details";
@@ -28,7 +27,6 @@ export default async function ProductDetails({
 
   return (
     <>
-      <Header />
       <div className="w-screen flex flex-col py-16 bg-primary">
         <div className=" w-[70%] mx-auto">
           <div className="text-gray-500 mb-8">

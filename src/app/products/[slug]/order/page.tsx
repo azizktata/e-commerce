@@ -1,4 +1,3 @@
-import Header from "@/app/ui/header";
 import OrderForm from "@/app/ui/orderForm";
 import prisma from "@/lib/db";
 import { getKindeServerSession } from "@kinde-oss/kinde-auth-nextjs/server";
@@ -43,7 +42,6 @@ export default async function ProductOrder({
   }
   return (
     <>
-      <Header />
       <div className="w-screen flex flex-col  py-16 bg-primary">
         {" "}
         <div className="w-[70%] mx-auto">

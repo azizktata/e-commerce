@@ -1,5 +1,4 @@
 import Image from "next/image";
-import Header from "./ui/header";
 
 import Slider from "./ui/slider";
 import Card from "./ui/card";
@@ -17,8 +16,6 @@ export default async function Home() {
   });
   return (
     <>
-      <Header />
-
       <main className="bg-primary  bg-[url('/paw-bg.png')] min-h-screen bg-repeat bg-[length:550px_550px] bg-primary bg-blend-overlay">
         {/* <div className="relative w-[100%] mx-auto  rounded-lg mb-15 bg-white">
           <Carousel>

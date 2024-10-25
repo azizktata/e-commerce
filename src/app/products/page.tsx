@@ -1,5 +1,4 @@
 import Link from "next/link";
-import Header from "../ui/header";
 import Card from "../ui/card";
 import Select from "../ui/select";
 import prisma from "@/lib/db";
@@ -24,8 +23,6 @@ export default async function Products({
   const productsCount = await prisma.product.count();
   return (
     <>
-      <Header />
-
       <div className="w-[100%] h-screen bg-primary pt-8">
         <div className="w-[70%] mx-auto flex flex-col gap-2">
           <div className="text-gray-500 mb-8">
