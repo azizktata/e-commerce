@@ -7,6 +7,7 @@ export const kinde = new KindeAuth({
   cookieOptions: {
     secure: true,      // Ensure cookie is only sent over HTTPS
     sameSite: 'Lax',   // Change to 'None' if you need cross-origin login
-    path: '/',         // Make cookies available across all routes
+    path: '/',   
+    storeTokensInCookies: true,      // Make cookies available across all routes
   },
 });
