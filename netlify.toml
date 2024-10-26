@@ -1,6 +1,0 @@
-[[headers]]
-  for = "/*"
-  [headers.values]
-    Set-Cookie = "Secure; HttpOnly; SameSite=Lax"
-    Cache-Control = "no-store"
-
