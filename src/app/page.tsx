@@ -269,7 +269,7 @@ export default async function Home() {
               <span className="w-10 border-t border-gray-300"></span>
             </div>
           </div>
-          <div className=" flex flex-col justify-center  gap-8 md:gap-2 md:grid md:grid-cols-[repeat(2,minmax(280px,1fr))] lg:grid-cols-[repeat(3,minmax(280px,1fr))] w-[70%] mx-auto ">
+          <div className=" flex flex-col justify-center  gap-8 md:gap-2 md:grid md:grid-cols-[repeat(2,minmax(280px,1fr))] lg:grid-cols-[repeat(3,minmax(280px,1fr))] w-[100%] mx-auto ">
             {products.map((product) => (
               <Card key={product.id} product={product} />
             ))}

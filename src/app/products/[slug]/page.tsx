@@ -27,7 +27,7 @@ export default async function ProductDetails({
 
   return (
     <>
-      <div className="w-screen flex flex-col py-16 bg-primary">
+      <div className="w-full  flex flex-col py-16 bg-primary">
         <div className=" w-[70%] mx-auto">
           <div className="text-gray-500 mb-8">
             <Link href={".."}>Accueil </Link> /{" "}
