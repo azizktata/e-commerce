@@ -35,8 +35,6 @@ export default async function ProductDetails({
           <Nav slug={product.slug} />
         </div>
         <div className="flex w-screen">
-          {/* <!-- Description Div --> */}
-
           <Details product={product} />
         </div>
       </div>

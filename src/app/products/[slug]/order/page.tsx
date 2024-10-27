@@ -55,8 +55,6 @@ export default async function ProductOrder({
           <Nav slug={product.slug} />
         </div>
         <div className="w-[70%] xs:w-[80%] sm:flex sm:flex-col  mx-auto gap-8 md:grid md:grid-cols-[repeat(3,1fr)]">
-          {/* <!-- Description Div --> */}
-
           <div className="mb-8 col-span-2">
             <OrderForm
               userInfo={userInfo}
@@ -75,35 +73,6 @@ export default async function ProductOrder({
                 height={160}
               />
             </div>
-            {/* <div className=" w-full lg:w-4/12 grid lg:grid-cols-1 sm:grid-cols-4 grid-cols-2 gap-6">
-              <div className="bg-gray-100 flex justify-center items-center py-4">
-                <Image
-                  className="relative w-40"
-                  src={product.image}
-                  alt=""
-                  width={160}
-                  height={160}
-                />
-              </div>
-              <div className="bg-gray-100 flex justify-center items-center py-4">
-                <Image
-                  className="relative w-40"
-                  src={product.image}
-                  alt=""
-                  width={160}
-                  height={160}
-                />
-              </div>
-              <div className="bg-gray-100 flex justify-center items-center py-4">
-                <Image
-                  className="relative w-40"
-                  src={product.image}
-                  alt=""
-                  width={160}
-                  height={160}
-                />
-              </div>
-            </div> */}
           </div>
         </div>
       </div>

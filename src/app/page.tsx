@@ -17,43 +17,6 @@ export default async function Home() {
   return (
     <>
       <main className="bg-primary  min-h-screen  w-full ">
-        {/* <div className="relative w-[100%] mx-auto  rounded-lg mb-15 bg-white">
-          <Carousel>
-            <Image
-              src="/carousel-demo.webp"
-              width={1000}
-              height={760}
-              alt="carousel"
-              className="object-contain w-full h-full overflow-hidden object-left xs:object-bottom"
-            />
-            <Image
-              src="/carousel-2.png"
-              width={1000}
-              height={760}
-              alt="carousel"
-              className="object-cover w-full h-full"
-            />
-            <Image
-              src="/carousel-3.png"
-              width={1000}
-              height={760}
-              alt="carousel"
-              className="object-cover w-full h-full"
-            />
-          </Carousel>
-          <div className="absolute inset-y-0 right-0  w-1/2 items-center justify-center flex flex-col gap-4">
-            <h1 className="text-secondary text-8xl">Petssy Food.</h1>
-            <p className="text-secondary">Get the best deals on our products</p>
-            <Link href="/products">
-              <button
-                className="flex items-center gap-3 bg-[#3cf084] hover:text-green-500 hover:bg-transparent hover:border hover:border-green-500 text-[#002a31] text-[20px] leading-[28px] text-center tracking-[-0.2px] 
-           rounded-[100px] shadow-none px-6 py-2 transition-colors border-transparent duration-300"
-              >
-                shop <ArrowRightIcon className="h-3 w-3" />
-              </button>
-            </Link>{" "}
-          </div>
-        </div> */}
         <div className="sm:flex sm:flex-col sm:items-center md:grid md:grid-cols-[repeat(2,1fr)]  w-[100%] mx-auto  rounded-lg mb-15 bg-white mb-24">
           <Carousel>
             <Image
@@ -124,65 +87,7 @@ export default async function Home() {
               <span className="w-10 border-t border-gray-300"></span>
             </div>
           </div>
-          {/* <div className="text-start py-8 ">
-            <h2 className="text-3xl font-bold text-gray-800 mt-2">
-              Browse By Category
-            </h2>
-          </div>
-          <div className=" flex flex-col gap-4  md:grid md:grid-cols-[repeat(3,1fr)] mb-20 ">
-            <div className=" bg-gray-100 relative rounded-lg">
-              <Image
-                src="/cat.png"
-                width={1000}
-                height={400}
-                alt="carousel"
-                className="object-cover w-full h-[200px] bg-blue-100"
-              />
-              <div className=" items-start text-white  justify-end flex flex-col gap-4 px-6 py-4">
-                <div className="flex w-full justify-between items-center">
-                  <h4 className="text-xl text-gray-800 font-bold"> Cats</h4>
 
-                  <ArrowRightIcon className="h-5 w-5 text-green-500" />
-                </div>
-                <p className="text-gray-500">5 products</p>
-              </div>
-            </div>
-            <div className=" bg-gray-100 relative rounded-lg">
-              <Image
-                src="/dog-2.jpg"
-                width={1000}
-                height={400}
-                alt="carousel"
-                className="object-cover w-full h-[200px]"
-              />
-              <div className=" items-start text-white  justify-end flex flex-col gap-4 px-6 py-4">
-                <div className="flex w-full justify-between items-center">
-                  <h4 className="text-xl text-gray-800 font-bold"> Dogs</h4>
-                  <ArrowRightIcon className="h-5 w-5 text-green-500" />
-                </div>
-                <p className="text-gray-500">5 products</p>
-              </div>
-            </div>
-            <div className=" bg-gray-100 relative rounded-lg">
-              <Image
-                src="/toys.jpg"
-                width={1000}
-                height={400}
-                alt="carousel"
-                className="object-cover w-full h-[200px]"
-              />
-              <div className=" items-start text-white  justify-end flex flex-col gap-4 px-6 py-4">
-                <div className="flex w-full justify-between items-center">
-                  <h4 className="text-xl text-gray-800 font-bold">
-                    {" "}
-                    Accessories
-                  </h4>
-                  <ArrowRightIcon className="h-5 w-5 text-green-500" />
-                </div>
-                <p className="text-gray-500">5 products</p>
-              </div>
-            </div>
-          </div> */}
           <div className=" mx-auto grid grid-cols-3 gap-4 p-6 bg-white  shadow-md rounded-lg ">
             <div className="flex flex-col items-center justify-center space-y-2">
               <svg
@@ -232,22 +137,6 @@ export default async function Home() {
                 Toys
               </span>
             </div>
-
-            {/* <div className="flex flex-col items-center justify-center space-y-2">
-              <svg
-                className="w-8 h-8 text-gray-500"
-                fill="none"
-                stroke="currentColor"
-                stroke-width="2"
-                viewBox="0 0 24 24"
-                xmlns="http://www.w3.org/2000/svg"
-              >
-                <circle cx="12" cy="12" r="1"></circle>
-                <circle cx="19" cy="12" r="1"></circle>
-                <circle cx="5" cy="12" r="1"></circle>
-              </svg>
-              <span className="text-sm font-medium text-gray-600">More</span>
-            </div> */}
           </div>
         </div>
 
@@ -380,10 +269,6 @@ export default async function Home() {
           </div>
         </div>
       </footer>
-
-      {/* <footer>
-        <p>&copy; 2024, #SOKOON Shop</p>
-      </footer> */}
     </>
   );
 }
