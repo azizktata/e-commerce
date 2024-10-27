@@ -6,7 +6,7 @@ import { useAppDispatch } from "../store/hooks";
 import { addToCart } from "../store/slices/cartSlice";
 import Link from "next/link";
 import { Prisma } from "@prisma/client";
-import { PlusCircleIcon } from "@heroicons/react/24/outline";
+import { PlusIcon } from "@heroicons/react/24/outline";
 
 type ProductWithImagesAndCategories = Prisma.ProductGetPayload<{
   include: { images: true; categories: true };
@@ -79,8 +79,8 @@ export default function Card({
           onClick={() => dispatch(addToCart({ item: product, quantity: 1 }))}
           href="#sidebar"
         >
-          <button className=" w-8 h-8 rounded-full border border-gray-300 flex ml-auto text-gray-500 hover:text-green-400 transition z-50">
-            <PlusCircleIcon />
+          <button className="  rounded-full border border-gray-300 flex ml-auto text-gray-500 hover:text-green-400 transition z-50">
+            <PlusIcon className="w-6 h-6" />
           </button>
         </a>
       </div>

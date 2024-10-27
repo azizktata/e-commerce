@@ -16,7 +16,7 @@ export default async function Home() {
   });
   return (
     <>
-      <main className="main-bg bg-primary bg-[url('/paw-bg.png')] min-h-screen bg-repeat bg-[length:550px_550px]  ">
+      <main className="bg-primary  min-h-screen  w-full ">
         {/* <div className="relative w-[100%] mx-auto  rounded-lg mb-15 bg-white">
           <Carousel>
             <Image
@@ -251,7 +251,7 @@ export default async function Home() {
           </div>
         </div>
 
-        <div className="mb-15  w-[90%] md:w-[80%] lg:w-[70%] mx-auto ">
+        <div className="mb-15 w-[80%]  md:w-[70%] mx-auto ">
           <div className="text-center py-8 ">
             <p className="text-sm text-green-500 font-semibold tracking-wide">
               Special Products
