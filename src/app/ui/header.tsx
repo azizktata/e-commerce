@@ -23,7 +23,7 @@ export default function Header({
       <div className="w-[70%] mx-auto py-4 flex flex-col  sm:flex-row sm:justify-between sm:items-center">
         <div className=" text-center ">
           <h1>
-            <Link className="text-2xl" href="/">
+            <Link className="text-3xl" href="/">
               #PETSSY
             </Link>
           </h1>

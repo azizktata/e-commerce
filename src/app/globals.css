@@ -42,6 +42,10 @@ body {
 #slider::-webkit-scrollbar {
   display: none;
 }
+.main-bg {
+  background-blend-mode: overlay;
+  -webkit-background-blend-mode: overlay;
+}
 
 #slider,
 #slider2 {

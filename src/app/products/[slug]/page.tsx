@@ -4,15 +4,13 @@ import Details from "@/app/ui/details";
 
 import { notFound } from "next/navigation";
 import prisma from "@/lib/db";
+import Nav from "@/app/ui/nav";
 
 export default async function ProductDetails({
   params,
 }: {
   params: { slug: string };
 }) {
-  // const product = productss.find(
-  //   (product) => product.id === parseInt(params.id)
-  // );
   const product = await prisma.product.findUnique({
     where: {
       slug: params.slug,
@@ -34,10 +32,7 @@ export default async function ProductDetails({
             <Link href={"../products"}>Products</Link> /{" "}
             <span>{product?.name}</span>
           </div>
-          <nav className="flex gap-8 text-xl mb-8">
-            <Link href={`/products/${params.slug}`}>Details</Link>
-            <Link href={`/products/${params.slug}/order`}>Order</Link>
-          </nav>
+          <Nav slug={product.slug} />
         </div>
         <div className="flex w-screen">
           {/* <!-- Description Div --> */}

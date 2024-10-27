@@ -29,7 +29,7 @@ export default function Details({ product }: { product: ProductWithImages }) {
 
   return (
     <div className="w-[70%] xs:w-[80%] sm:flex sm:flex-col  mx-auto gap-8 md:grid md:grid-cols-[repeat(3,1fr)]  ">
-      <div className="col-span-2 ">
+      <div className="col-span-2 mb-8">
         <h2 className="font-semibold lg:text-4xl text-3xl lg:leading-9 leading-7 text-gray-800 ">
           {product.name}
         </h2>
@@ -64,7 +64,7 @@ export default function Details({ product }: { product: ProductWithImages }) {
               <input
                 id="counter"
                 aria-label="input"
-                className=" h-full text-center w-14 pb-1"
+                className=" h-full text-center bg-primary w-14 pb-1"
                 type="text"
                 value={count}
                 onChange={(e) => e.target.value}
@@ -92,11 +92,11 @@ export default function Details({ product }: { product: ProductWithImages }) {
       <div className="w-full bg-primary flex">
         <div className="w-full flex justify-center items-center">
           <Image
-            className=" relative w-60 "
+            className=" relative w-full self-stretch h-full object-cover p-2"
             src={product.images[0].url || "/fallback.png"}
             alt=""
-            width={160}
-            height={160}
+            width={180}
+            height={180}
           />
         </div>
         {/* <div className=" w-full lg:w-4/12 grid lg:grid-cols-1 sm:grid-cols-4 grid-cols-2 gap-6">

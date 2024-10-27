@@ -16,7 +16,7 @@ export default async function Home() {
   });
   return (
     <>
-      <main className="bg-primary  bg-[url('/paw-bg.png')] min-h-screen bg-repeat bg-[length:550px_550px] bg-primary bg-blend-overlay">
+      <main className="main-bg bg-primary bg-[url('/paw-bg.png')] min-h-screen bg-repeat bg-[length:550px_550px]  ">
         {/* <div className="relative w-[100%] mx-auto  rounded-lg mb-15 bg-white">
           <Carousel>
             <Image
@@ -251,7 +251,7 @@ export default async function Home() {
           </div>
         </div>
 
-        <div className="mb-15  w-[70%] mx-auto ">
+        <div className="mb-15  w-[90%] md:w-[80%] lg:w-[70%] mx-auto ">
           <div className="text-center py-8 ">
             <p className="text-sm text-green-500 font-semibold tracking-wide">
               Special Products
@@ -276,8 +276,8 @@ export default async function Home() {
           </div>
         </div>
 
-        <div className="mb-15 ">
-          <div className=" w-[70%] mx-auto py-20">
+        <div className="mb-15 w-[100%] md:w-[85%] mx-auto">
+          <div className=" py-20">
             <div className="text-center py-8 ">
               <p className="text-sm text-green-500 font-semibold tracking-wide">
                 Special Products
@@ -316,13 +316,14 @@ export default async function Home() {
               printing and typesetting industry. Lorem Ipsum has been the
               industry's standard dummy text ever since the 1500s.
             </p>
-
-            <button
-              className="flex items-center gap-3 bg-[#3cf084] hover:text-green-500 hover:bg-transparent hover:border hover:border-green-500 text-[#002a31] text-[20px] leading-[28px] text-center tracking-[-0.2px] 
-           rounded-[100px] shadow-none px-6 py-2 transition-colors border-transparent duration-300"
-            >
-              shop <ArrowRightIcon className="h-3 w-3" />
-            </button>
+            <Link href="/products">
+              <button
+                className="flex items-center gap-3 bg-[#3cf084] hover:text-green-500 hover:bg-transparent hover:border hover:border-green-500 text-[#002a31] text-[20px] leading-[28px] text-center tracking-[-0.2px] 
+              rounded-[100px] shadow-none px-6 py-2 transition-colors border-transparent duration-300"
+              >
+                shop <ArrowRightIcon className="h-3 w-3" />
+              </button>
+            </Link>
           </div>
         </div>
       </main>

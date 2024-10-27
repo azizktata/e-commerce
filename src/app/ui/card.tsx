@@ -79,7 +79,7 @@ export default function Card({
           onClick={() => dispatch(addToCart({ item: product, quantity: 1 }))}
           href="#sidebar"
         >
-          <button className=" w-8 h-8 rounded-full border border-gray-300 flex ml-auto text-gray-500 hover:text-green-400 transition">
+          <button className=" w-8 h-8 rounded-full border border-gray-300 flex ml-auto text-gray-500 hover:text-green-400 transition z-50">
             <PlusCircleIcon />
           </button>
         </a>

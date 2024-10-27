@@ -1,3 +1,4 @@
+import Nav from "@/app/ui/nav";
 import OrderForm from "@/app/ui/orderForm";
 import prisma from "@/lib/db";
 import { getKindeServerSession } from "@kinde-oss/kinde-auth-nextjs/server";
@@ -51,15 +52,12 @@ export default async function ProductOrder({
             <span>{product?.name}</span>
           </div>
 
-          <nav className="flex gap-8 text-xl mb-8">
-            <Link href={`/products/${params.slug}`}>Details</Link>
-            <Link href={`/products/${params.slug}/order`}>Order</Link>
-          </nav>
+          <Nav slug={product.slug} />
         </div>
         <div className="w-[70%] xs:w-[80%] sm:flex sm:flex-col  mx-auto gap-8 md:grid md:grid-cols-[repeat(3,1fr)]">
           {/* <!-- Description Div --> */}
 
-          <div className=" col-span-2">
+          <div className="mb-8 col-span-2">
             <OrderForm
               userInfo={userInfo}
               product={product}
@@ -70,7 +68,7 @@ export default async function ProductOrder({
           <div className="w-full bg-primary flex">
             <div className="w-full flex justify-center items-center">
               <Image
-                className="relative w-60"
+                className=" relative w-full self-stretch h-full object-cover"
                 src={product.images[0].url || "/fallback.png"}
                 alt=""
                 width={160}
