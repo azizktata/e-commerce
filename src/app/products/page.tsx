@@ -8,7 +8,7 @@ export default async function Products({
 }: {
   searchParams: { category: string; sort: "asc" | "desc" };
 }) {
-  const categories: string[] = ["cats", "dogs", "toys"];
+  const categories: string[] = ["Cats", "dogs", "toys"];
 
   const products = await prisma.product.findMany({
     include: {

@@ -72,7 +72,11 @@ export default function Select({ options }: { options: string[] }) {
         >
           <option value={0}>Categories</option>
           {options?.map((category: string) => (
-            <option key={category} value={category}>
+            <option
+              defaultChecked={categoryFilter == category}
+              key={category}
+              value={category}
+            >
               {category}
             </option>
           ))}
