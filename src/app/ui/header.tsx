@@ -20,7 +20,7 @@ export default function Header({
   // const { user, isAuthenticated } = useKindeBrowserClient();
   return (
     <header>
-      <div className="w-[70%] mx-auto py-4 flex flex-col  sm:flex-row sm:justify-between sm:items-center">
+      <div className="w-[70%] mx-auto py-6 flex flex-col  sm:flex-row sm:justify-between sm:items-center">
         <div className=" text-center ">
           <h1>
             <Link className="text-3xl" href="/">
@@ -30,7 +30,7 @@ export default function Header({
           <p className="text-sm text-green-500">Pet's food locally</p>
         </div>
         <nav>
-          <ul className="flex gap-4 justify-center py-3 uppercase items-center">
+          <ul className="flex gap-4 justify-center py-3 uppercase text-xl items-center">
             <li>
               <Link
                 className={`${
