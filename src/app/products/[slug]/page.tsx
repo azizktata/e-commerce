@@ -1,43 +1,17 @@
 import React from "react";
-import Link from "next/link";
 import Details from "@/app/ui/details";
-
 import { notFound } from "next/navigation";
-import prisma from "@/lib/db";
-import Nav from "@/app/ui/nav";
+import getProduct from "@/utils/product";
 
 export default async function ProductDetails({
   params,
 }: {
   params: { slug: string };
 }) {
-  const product = await prisma.product.findUnique({
-    where: {
-      slug: params.slug,
-    },
-    include: {
-      images: true,
-    },
-  });
+  const product = await getProduct(params.slug);
+
   if (!product) {
     notFound();
   }
-
-  return (
-    <>
-      <div className="w-full  flex flex-col py-16 bg-primary">
-        <div className=" w-[70%] mx-auto">
-          <div className="text-gray-500 mb-8">
-            <Link href={".."}>Accueil </Link> /{" "}
-            <Link href={"../products"}>Products</Link> /{" "}
-            <span>{product?.name}</span>
-          </div>
-          <Nav slug={product.slug} />
-        </div>
-        <div className="flex w-screen">
-          <Details product={product} />
-        </div>
-      </div>
-    </>
-  );
+  return <Details product={product} />;
 }

@@ -2,8 +2,6 @@
 
 import React from "react";
 import { PlusIcon, MinusIcon } from "@heroicons/react/24/outline";
-// import { Item } from "../types";
-import Image from "next/image";
 import { useAppDispatch } from "../store/hooks";
 import { addToCart } from "../store/slices/cartSlice";
 import { Prisma } from "@prisma/client";
@@ -28,10 +26,10 @@ export default function Details({ product }: { product: ProductWithImages }) {
   };
 
   return (
-    <div className="w-[70%] xs:w-[80%] sm:flex sm:flex-col  mx-auto gap-8 md:grid md:grid-cols-[repeat(3,1fr)]  ">
+    <>
       <div className="col-span-2 mb-8">
         <h2 className="font-semibold lg:text-4xl text-3xl lg:leading-9 leading-7 text-gray-800 ">
-          {product.name}
+          {product?.name}
         </h2>
 
         <div className=" flex flex-row justify-between  mt-5">
@@ -46,10 +44,10 @@ export default function Details({ product }: { product: ProductWithImages }) {
           readable content of a page when looking at its layout. The point of
           using. Lorem Ipsum is that it has a more-or-less normal distribution
           of letters. */}
-          {product.description}
+          {product?.description}
         </p>
         <p className=" font-semibold lg:text-2xl text-xl lg:leading-6 leading-5 mt-6 ">
-          $ {product.price}
+          $ {product?.price}
         </p>
 
         <div className="lg:mt-11 mt-10">
@@ -88,49 +86,6 @@ export default function Details({ product }: { product: ProductWithImages }) {
           </button>
         </a>
       </div>
-
-      <div className="w-full bg-primary flex">
-        <div className="w-full flex justify-center items-center">
-          <Image
-            className=" relative w-80 self-stretch h-full object-cover p-2"
-            src={product.images[0].url || "/fallback.png"}
-            alt=""
-            width={80}
-            height={180}
-          />
-        </div>
-        {/* <div className=" w-full lg:w-4/12 grid lg:grid-cols-1 sm:grid-cols-4 grid-cols-2 gap-6">
-          <div className="bg-gray-100 flex justify-center items-center py-4">
-            <Image
-              className="relative w-40"
-              src={product.image}
-              alt=""
-              width={160}
-              height={160}
-            />
-          </div>
-          <div className="bg-gray-100 flex justify-center items-center py-4">
-            <Image
-              className="relative w-40"
-              src={product.image}
-              alt=""
-              width={160}
-              height={160}
-            />
-          </div>
-          <div className="bg-gray-100 flex justify-center items-center py-4">
-            <div className="bg-gray-100 flex justify-center items-center py-4">
-              <Image
-                className="relative w-40"
-                src={product.image}
-                alt=""
-                width={160}
-                height={160}
-              />
-            </div>
-          </div>
-        </div> */}
-      </div>
-    </div>
+    </>
   );
 }

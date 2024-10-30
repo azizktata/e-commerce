@@ -29,15 +29,7 @@ export default function OrderForm({
 
   const addCount = (e: React.MouseEvent<HTMLButtonElement>) => {
     e.preventDefault();
-    // if (product) {
-    //   if (countt >= 1) {
-    //     dispatch(addQuantity({ id: product.id }));
-    //   } else {
-    //     dispatch(addToCart({ item: product, quantity: countt + 1 }));
-    //   }
-    // } else {
-    //   toast.error("Product information is missing.");
-    // }
+
     setCountt((prev) => prev + 1);
   };
 
@@ -45,15 +37,6 @@ export default function OrderForm({
     e.preventDefault();
     if (countt > 1) {
       setCountt((prev) => prev - 1);
-      // if (product) {
-      //   if (countt == 1) {
-      //     dispatch(removeFromCart({ id: product.id }));
-      //   } else {
-      //     dispatch(reduceQuantity({ id: product.id }));
-      //   }
-      // } else {
-      //   toast.error("Product information is missing.");
-      // }
     }
   };
   async function handleSubmit(formData: FormData) {
