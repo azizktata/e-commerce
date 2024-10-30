@@ -6,7 +6,7 @@ export default function Carousel({ children }: { children: React.ReactNode }) {
   return (
     <>
       <div className="sliderCarousel h-[500px] ">{children}</div>
-      <div className="arrows z-10 absolute top-1/2 w-full flex justify-between transform -translate-y-1/2 px-4">
+      <div className="arrows z-10 absolute top-1/3 w-full flex justify-between transform -translate-y-1/2 px-4">
         <ChevronLeftIcon
           id="prev"
           onClick={() => {

@@ -24,14 +24,16 @@ export default async function Home() {
               width={1000}
               height={760}
               alt="carousel"
-              className="object-contain w-full h-full overflow-hidden  "
+              className="object-contain h-full w-100 overflow-hidden  "
+              loading="eager"
+              priority
             />
             <Image
               src="/carousel-demo2.webp"
               width={1000}
               height={760}
               alt="carousel"
-              className="object-contain w-full h-full overflow-hidden  "
+              className="object-contain h-full w-100  overflow-hidden  "
             />
           </Carousel>
           <div className=" w-full pb-16 md:p-0 items-center justify-center flex flex-col gap-4">

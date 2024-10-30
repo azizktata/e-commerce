@@ -66,10 +66,10 @@ export default async function ProductOrder({
           <div className="w-full bg-primary flex">
             <div className="w-full flex justify-center items-center">
               <Image
-                className=" relative w-full self-stretch h-full object-cover"
+                className=" relative w-80 self-stretch h-full object-cover"
                 src={product.images[0].url || "/fallback.png"}
                 alt=""
-                width={160}
+                width={80}
                 height={160}
               />
             </div>

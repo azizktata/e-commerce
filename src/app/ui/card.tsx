@@ -69,8 +69,8 @@ export default function Card({
               className="p-8 rounded-t-lg w-full h-80 object-cover transform group-hover:scale-105 transition-transform duration-300 ease-in-out"
               src={product.images[0]?.url || "/fallback.png"}
               alt=""
-              width={1000}
-              height={786}
+              width={250}
+              height={250}
             />
           </div>
         </Link>

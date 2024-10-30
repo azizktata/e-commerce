@@ -92,10 +92,10 @@ export default function Details({ product }: { product: ProductWithImages }) {
       <div className="w-full bg-primary flex">
         <div className="w-full flex justify-center items-center">
           <Image
-            className=" relative w-full self-stretch h-full object-cover p-2"
+            className=" relative w-80 self-stretch h-full object-cover p-2"
             src={product.images[0].url || "/fallback.png"}
             alt=""
-            width={180}
+            width={80}
             height={180}
           />
         </div>
